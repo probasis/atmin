@@ -19,6 +19,10 @@
                     :params="field.params"
                 ></component>            
 
+                <div v-if="false" class="text-danger">
+                    Error message here
+                </div>                
+                
                 <small v-if="field.hint" class="form-text text-muted">
                     {{field.hint}}
                 </small>

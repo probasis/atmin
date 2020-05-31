@@ -64,36 +64,7 @@ const app = new Vue({
                 label: 'One line text',
                 component: 'text',
                 hint: 'Here is some hint'
-            },
-            {
-                name: 'value_field',
-                label: 'Value field',
-                component: 'value',
-                hint: 'Read-only value'
-            },            
-            {                                
-                component: 'separator',
-                params: {
-                    text: 'This is a separator'
-                }
-            },    
-            {                                
-                component: 'content',
-                params: {
-                    text: "This is plain text content\nwith pre-wrap style",
-                    html: "Here is a bit of <b>HTML</b> code"
-                }
-            },     
-            {                                
-                component: 'tabs',
-                params: {
-                    tabs: [                        
-                        {title: 'Tab A', fields: fieldSetA},
-                        {title: 'Tab B', fields: fieldSetB},
-                        {title: 'Tab C', fields: fieldSetC},                        
-                    ]
-                }
-            },             
+            },         
             {
                 name: 'textarea_field',
                 label: 'Textarea',
@@ -135,7 +106,46 @@ const app = new Vue({
                 params: {
                     text: 'Extra text for the checkbox'
                 }
-            },                       
+            },    
+            {
+                name: 'file_field',
+                label: 'File upload',
+                component: 'file',
+                params: {                     
+                }
+            },             
+            {              
+                label: 'Tabs with fields',
+                component: 'tabs',
+                params: {
+                    tabs: [                        
+                        {title: 'Tab A', fields: fieldSetA},
+                        {title: 'Tab B', fields: fieldSetB},
+                        {title: 'Tab C', fields: fieldSetC},                        
+                    ]
+                }
+            },                         
+            {                                
+                component: 'separator',
+                params: {
+                    text: 'This is a separator'
+                }
+            },    
+            {                           
+                label: 'Static content',
+                component: 'content',
+                params: {
+                    text: "This is plain text content\nwith pre-wrap style",
+                    html: "Here is a bit of <b>HTML</b> code"
+                }
+            },     
+            {
+                name: 'value_field',
+                label: 'Value field',
+                component: 'value',
+                hint: 'Read-only value'
+            },               
+            
         ],
         values: {
             value_field: "Some static"+"\n"+"value",
@@ -145,6 +155,7 @@ const app = new Vue({
             radio_field: 'fr',
             checkbox_field: true,
             checkboxes_field: ['en', 'ru', 'fr'],            
+            file_field: {size: 123456789, download: '/download'},
             
             fsa_1: 'Aaaaa',
             fsa_2: 'Bbbbb',

@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form action="" method="POST" enctype="multipart/form-data">
      
         <atmin-fields :fields="fields" :values="values"></atmin-fields>
         
@@ -7,8 +7,7 @@
             <div :class="[`col-${breakpoint}-${fieldCols}`, `offset-${breakpoint}-${labelCols}`]">                
                 <button type="submit" class="btn btn-primary px-5">{{submitText}}</button>                
             </div>
-        </div>       
-        
+        </div>               
         
     </form>  
 </template>

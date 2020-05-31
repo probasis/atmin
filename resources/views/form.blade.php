@@ -13,6 +13,8 @@
                 
         <div id="app">
             <div class="container">
+                <h1 class="text-center">Atmin form</h1>
+                
                 <atmin-form :fields="fields" :values="values"></atmin-form>
             </div>    
         </div>
