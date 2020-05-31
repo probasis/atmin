@@ -1,0 +1,19 @@
+<template>
+
+    <div class="custom-control custom-checkbox ">
+        <input type="checkbox" class="custom-control-input" 
+            :name="name" 
+            :id="`field-${name}`" 
+            checked="value" 
+            v-on:change="$emit('input', $event.target.checked)"       
+        >             
+        <label :for="`field-${name}`" class="custom-control-label">{{params.text}}</label> 
+    </div> 
+
+</template>
+
+<script>
+    export default {            
+        props: ['name', 'params', 'value']       
+    } 
+</script>
