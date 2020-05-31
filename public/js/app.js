@@ -2067,6 +2067,46 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminFieldTabs.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AtminFieldTabs.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['params', 'values'],
+  data: function data() {
+    return {
+      currentTab: 0
+    };
+  },
+  methods: {
+    changeTab: function changeTab(t) {
+      this.currentTab = t;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminFieldText.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AtminFieldText.vue?vue&type=script&lang=js& ***!
@@ -2138,10 +2178,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminForm.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AtminForm.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminFields.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AtminFields.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2171,6 +2211,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['fields', 'values'],
+  data: function data() {
+    return {
+      labelCols: 2,
+      breakpoint: 'md',
+      submitText: 'OK'
+    };
+  },
+  computed: {
+    fieldCols: function fieldCols() {
+      return 12 - this.labelCols;
+    }
+  },
+  mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminForm.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AtminForm.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 //
 //
 //
@@ -38043,6 +38119,81 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminFieldTabs.vue?vue&type=template&id=08bf3fc4&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AtminFieldTabs.vue?vue&type=template&id=08bf3fc4& ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "ul",
+        { staticClass: "nav nav-tabs mb-3" },
+        _vm._l(_vm.params.tabs, function(tab, t) {
+          return _c("li", { staticClass: "nav-item" }, [
+            _c(
+              "a",
+              {
+                staticClass: "nav-link",
+                class: { active: t == _vm.currentTab },
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.changeTab(t)
+                  }
+                }
+              },
+              [_vm._v(_vm._s(tab.title))]
+            )
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.params.tabs, function(tab, t) {
+        return _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: t == _vm.currentTab,
+                expression: "t==currentTab"
+              }
+            ]
+          },
+          [
+            _c("atmin-fields", {
+              attrs: { fields: tab.fields, values: _vm.values }
+            })
+          ],
+          1
+        )
+      })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminFieldText.vue?vue&type=template&id=01f0e1f3&":
 /*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AtminFieldText.vue?vue&type=template&id=01f0e1f3& ***!
@@ -38137,10 +38288,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminForm.vue?vue&type=template&id=76dcb348&":
-/*!************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AtminForm.vue?vue&type=template&id=76dcb348& ***!
-  \************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminFields.vue?vue&type=template&id=cd2f5086&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AtminFields.vue?vue&type=template&id=cd2f5086& ***!
+  \**************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -38153,7 +38304,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "form",
+    "div",
     [
       _vm._l(_vm.fields, function(field) {
         return _c("div", { staticClass: "form-group row" }, [
@@ -38184,7 +38335,11 @@ var render = function() {
             [
               _c("atmin-field-" + field.component, {
                 tag: "component",
-                attrs: { name: field.name, params: field.params },
+                attrs: {
+                  name: field.name,
+                  values: _vm.values,
+                  params: field.params
+                },
                 model: {
                   value: _vm.values[field.name],
                   callback: function($$v) {
@@ -38209,6 +38364,38 @@ var render = function() {
         ])
       }),
       _vm._v(" "),
+      _c("hr")
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminForm.vue?vue&type=template&id=76dcb348&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AtminForm.vue?vue&type=template&id=76dcb348& ***!
+  \************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    [
+      _c("atmin-fields", { attrs: { fields: _vm.fields, values: _vm.values } }),
+      _vm._v(" "),
       _c("div", { staticClass: "form-group row mt-4" }, [
         _c(
           "div",
@@ -38231,7 +38418,7 @@ var render = function() {
         )
       ])
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
@@ -50417,9 +50604,11 @@ var map = {
 	"./components/AtminFieldRadio.vue": "./resources/js/components/AtminFieldRadio.vue",
 	"./components/AtminFieldSelect.vue": "./resources/js/components/AtminFieldSelect.vue",
 	"./components/AtminFieldSeparator.vue": "./resources/js/components/AtminFieldSeparator.vue",
+	"./components/AtminFieldTabs.vue": "./resources/js/components/AtminFieldTabs.vue",
 	"./components/AtminFieldText.vue": "./resources/js/components/AtminFieldText.vue",
 	"./components/AtminFieldTextarea.vue": "./resources/js/components/AtminFieldTextarea.vue",
 	"./components/AtminFieldValue.vue": "./resources/js/components/AtminFieldValue.vue",
+	"./components/AtminFields.vue": "./resources/js/components/AtminFields.vue",
 	"./components/AtminForm.vue": "./resources/js/components/AtminForm.vue"
 };
 
@@ -50502,6 +50691,45 @@ var choicesExample = [{
   value: "ru",
   text: "Russian"
 }];
+var fieldSetA = [{
+  name: 'fsa_1',
+  label: 'Field A1',
+  component: 'text'
+}, {
+  name: 'fsa_2',
+  label: 'Field A2',
+  component: 'text'
+}, {
+  name: 'fsa_3',
+  label: 'Field A3',
+  component: 'text'
+}];
+var fieldSetB = [{
+  name: 'fsb_1',
+  label: 'Field B1',
+  component: 'text'
+}, {
+  name: 'fsb_2',
+  label: 'Field B2',
+  component: 'text'
+}];
+var fieldSetC = [{
+  name: 'fsc_1',
+  label: 'Field C1',
+  component: 'text'
+}, {
+  name: 'fsc_2',
+  label: 'Field C2',
+  component: 'text'
+}, {
+  name: 'fsc_3',
+  label: 'Field C3',
+  component: 'text'
+}, {
+  name: 'fsc_4',
+  label: 'Field C4',
+  component: 'text'
+}];
 var app = new Vue({
   el: '#app',
   data: {
@@ -50525,6 +50753,20 @@ var app = new Vue({
       params: {
         text: "This is plain text content\nwith pre-wrap style",
         html: "Here is a bit of <b>HTML</b> code"
+      }
+    }, {
+      component: 'tabs',
+      params: {
+        tabs: [{
+          title: 'Tab A',
+          fields: fieldSetA
+        }, {
+          title: 'Tab B',
+          fields: fieldSetB
+        }, {
+          title: 'Tab C',
+          fields: fieldSetC
+        }]
       }
     }, {
       name: 'textarea_field',
@@ -50571,7 +50813,13 @@ var app = new Vue({
       select_field: 'fr',
       radio_field: 'fr',
       checkbox_field: true,
-      checkboxes_field: ['en', 'ru', 'fr']
+      checkboxes_field: ['en', 'ru', 'fr'],
+      fsa_1: 'Aaaaa',
+      fsa_2: 'Bbbbb',
+      fsa_3: 'Ccccc',
+      fsb_1: 'Ddddd',
+      fsb_2: 'Eeeee',
+      fsc_1: 'Fffff'
     }
   },
   mounted: function mounted() {}
@@ -51038,6 +51286,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/AtminFieldTabs.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/AtminFieldTabs.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AtminFieldTabs_vue_vue_type_template_id_08bf3fc4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AtminFieldTabs.vue?vue&type=template&id=08bf3fc4& */ "./resources/js/components/AtminFieldTabs.vue?vue&type=template&id=08bf3fc4&");
+/* harmony import */ var _AtminFieldTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AtminFieldTabs.vue?vue&type=script&lang=js& */ "./resources/js/components/AtminFieldTabs.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AtminFieldTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AtminFieldTabs_vue_vue_type_template_id_08bf3fc4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AtminFieldTabs_vue_vue_type_template_id_08bf3fc4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/AtminFieldTabs.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/AtminFieldTabs.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/AtminFieldTabs.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFieldTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./AtminFieldTabs.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminFieldTabs.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFieldTabs_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/AtminFieldTabs.vue?vue&type=template&id=08bf3fc4&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/AtminFieldTabs.vue?vue&type=template&id=08bf3fc4& ***!
+  \***********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFieldTabs_vue_vue_type_template_id_08bf3fc4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./AtminFieldTabs.vue?vue&type=template&id=08bf3fc4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminFieldTabs.vue?vue&type=template&id=08bf3fc4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFieldTabs_vue_vue_type_template_id_08bf3fc4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFieldTabs_vue_vue_type_template_id_08bf3fc4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/AtminFieldText.vue":
 /*!****************************************************!*\
   !*** ./resources/js/components/AtminFieldText.vue ***!
@@ -51240,6 +51557,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFieldValue_vue_vue_type_template_id_4efff09b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFieldValue_vue_vue_type_template_id_4efff09b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/AtminFields.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/AtminFields.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AtminFields_vue_vue_type_template_id_cd2f5086___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AtminFields.vue?vue&type=template&id=cd2f5086& */ "./resources/js/components/AtminFields.vue?vue&type=template&id=cd2f5086&");
+/* harmony import */ var _AtminFields_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AtminFields.vue?vue&type=script&lang=js& */ "./resources/js/components/AtminFields.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AtminFields_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AtminFields_vue_vue_type_template_id_cd2f5086___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AtminFields_vue_vue_type_template_id_cd2f5086___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/AtminFields.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/AtminFields.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/AtminFields.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFields_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./AtminFields.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminFields.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFields_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/AtminFields.vue?vue&type=template&id=cd2f5086&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/AtminFields.vue?vue&type=template&id=cd2f5086& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFields_vue_vue_type_template_id_cd2f5086___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./AtminFields.vue?vue&type=template&id=cd2f5086& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminFields.vue?vue&type=template&id=cd2f5086&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFields_vue_vue_type_template_id_cd2f5086___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFields_vue_vue_type_template_id_cd2f5086___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

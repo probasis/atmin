@@ -37,6 +37,24 @@ const choicesExample =  [
     {value:"ru", text:"Russian"},
 ];
 
+const fieldSetA = [
+    {name: 'fsa_1',  label: 'Field A1', component: 'text'},
+    {name: 'fsa_2',  label: 'Field A2', component: 'text'},
+    {name: 'fsa_3',  label: 'Field A3', component: 'text'}
+];
+
+const fieldSetB = [
+    {name: 'fsb_1',  label: 'Field B1', component: 'text'},
+    {name: 'fsb_2',  label: 'Field B2', component: 'text'},    
+];
+
+const fieldSetC = [
+    {name: 'fsc_1',  label: 'Field C1', component: 'text'},
+    {name: 'fsc_2',  label: 'Field C2', component: 'text'},
+    {name: 'fsc_3',  label: 'Field C3', component: 'text'},
+    {name: 'fsc_4',  label: 'Field C4', component: 'text'}
+];
+
 const app = new Vue({
     el: '#app',
     data: {
@@ -65,7 +83,17 @@ const app = new Vue({
                     text: "This is plain text content\nwith pre-wrap style",
                     html: "Here is a bit of <b>HTML</b> code"
                 }
-            },            
+            },     
+            {                                
+                component: 'tabs',
+                params: {
+                    tabs: [                        
+                        {title: 'Tab A', fields: fieldSetA},
+                        {title: 'Tab B', fields: fieldSetB},
+                        {title: 'Tab C', fields: fieldSetC},                        
+                    ]
+                }
+            },             
             {
                 name: 'textarea_field',
                 label: 'Textarea',
@@ -117,6 +145,13 @@ const app = new Vue({
             radio_field: 'fr',
             checkbox_field: true,
             checkboxes_field: ['en', 'ru', 'fr'],            
+            
+            fsa_1: 'Aaaaa',
+            fsa_2: 'Bbbbb',
+            fsa_3: 'Ccccc',
+            fsb_1: 'Ddddd',
+            fsb_2: 'Eeeee',
+            fsc_1: 'Fffff',            
         }
     },
     mounted() {
