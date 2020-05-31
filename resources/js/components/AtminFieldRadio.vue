@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mt-1">
         <div v-for="item in params.items" class="custom-control custom-radio custom-control-inline">
             <input type="radio" class="custom-control-input" 
                 :name="name" 

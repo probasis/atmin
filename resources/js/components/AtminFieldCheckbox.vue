@@ -1,6 +1,6 @@
 <template>
 
-    <div class="custom-control custom-checkbox ">
+    <div class="custom-control custom-checkbox mt-1">
         <input type="checkbox" class="custom-control-input" 
             :name="name" 
             :id="`field-${name}`" 

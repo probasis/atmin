@@ -42,26 +42,37 @@ const app = new Vue({
     data: {
         fields: [
             {
-                name: 'field_a',
+                name: 'text_field',
                 label: 'Text field',
                 component: 'text',
                 hint: 'Here is some hint'
             },
             {
-                name: 'field_b',
+                name: 'value_field',
+                label: 'Value field',
+                component: 'value',
+                hint: 'Read-only value'
+            },            
+            {
+                name: 'textarea_field',
                 label: 'Textarea field',
-                component: 'textarea'                
+                component: 'textarea',
+                required: true,
+                params: {
+                    rows: 5
+                }
             },        
             {
-                name: 'field_c',
+                name: 'select_field',
                 label: 'Select',
                 component: 'select',
+                required: true,
                 params: {
                     items: choicesExample
                 }
             },              
             {
-                name: 'field_d',
+                name: 'radio_field',
                 label: 'Radio',
                 component: 'radio',
                 params: {
@@ -69,7 +80,7 @@ const app = new Vue({
                 }
             },      
             {
-                name: 'field_e',
+                name: 'checkboxes_field',
                 label: 'Multiple checkboxes',
                 component: 'checkboxes',
                 params: {
@@ -77,7 +88,7 @@ const app = new Vue({
                 }
             },            
             {
-                name: 'field_f',
+                name: 'checkbox_field',
                 label: 'Single checkbox',
                 component: 'checkbox',
                 params: {
@@ -86,12 +97,13 @@ const app = new Vue({
             },                       
         ],
         values: {
-            field_a: 'Andrey Tushev',
-            field_b: 'The developer',
-            field_c: 'fr',
-            field_d: 'fr',
-            field_e: ['en', 'ru', 'fr'],
-            field_f: true,
+            value_field: "Some static"+"\n"+"value",
+            text_field: 'Andrey Tushev',
+            textarea_field: "The"+"\n"+"developer",
+            select_field: 'fr',
+            radio_field: 'fr',
+            checkbox_field: true,
+            checkboxes_field: ['en', 'ru', 'fr'],            
         }
     },
     mounted() {
