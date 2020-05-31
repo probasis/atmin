@@ -2316,8 +2316,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['fields', 'values'],
+  props: ['fields', 'values', 'method', 'action'],
   data: function data() {
     return {
       labelCols: 2,
@@ -38495,8 +38496,19 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "form",
-    { attrs: { action: "", method: "POST", enctype: "multipart/form-data" } },
+    {
+      attrs: {
+        action: _vm.action,
+        method: "POST",
+        enctype: "multipart/form-data"
+      }
+    },
     [
+      _c("input", {
+        attrs: { type: "hidden", name: "_method" },
+        domProps: { value: _vm.method.toUpperCase() }
+      }),
+      _vm._v(" "),
       _c("atmin-fields", { attrs: { fields: _vm.fields, values: _vm.values } }),
       _vm._v(" "),
       _c("div", { staticClass: "form-group row mt-4" }, [

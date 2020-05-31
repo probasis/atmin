@@ -1,5 +1,6 @@
 <template>
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form :action="action" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="_method" :value="method.toUpperCase()">        
      
         <atmin-fields :fields="fields" :values="values"></atmin-fields>
         
@@ -14,7 +15,7 @@
 
 <script>
     export default {
-        props: ['fields','values'],  
+        props: ['fields','values','method','action'],   
         data(){
             return {
                 labelCols: 2,

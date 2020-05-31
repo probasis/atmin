@@ -58,6 +58,7 @@ const fieldSetC = [
 const app = new Vue({
     el: '#app',
     data: {
+
         fields: [
             {
                 name: 'text_field',
