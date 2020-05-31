@@ -109,6 +109,16 @@ const app = new Vue({
                 }
             },    
             {
+                name: 'date_field',
+                label: 'Date',
+                component: 'date',                
+            },              
+            {
+                name: 'time_field',
+                label: 'Time',
+                component: 'time',                
+            },                          
+            {
                 name: 'file_field',
                 label: 'File upload',
                 component: 'file',
