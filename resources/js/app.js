@@ -43,7 +43,7 @@ const app = new Vue({
         fields: [
             {
                 name: 'text_field',
-                label: 'Text field',
+                label: 'One line text',
                 component: 'text',
                 hint: 'Here is some hint'
             },
@@ -53,9 +53,22 @@ const app = new Vue({
                 component: 'value',
                 hint: 'Read-only value'
             },            
+            {                                
+                component: 'separator',
+                params: {
+                    text: 'This is a separator'
+                }
+            },    
+            {                                
+                component: 'content',
+                params: {
+                    text: "This is plain text content\nwith pre-wrap style",
+                    html: "Here is a bit of <b>HTML</b> code"
+                }
+            },            
             {
                 name: 'textarea_field',
-                label: 'Textarea field',
+                label: 'Textarea',
                 component: 'textarea',
                 required: true,
                 params: {
