@@ -3,8 +3,9 @@
         :id="'field-'+name" 
         :name="name"
         class="form-control" 
-        :rows="params.rows"      
+        :rows="params && params.rows ? params.rows : 3"      
         :value="value" 
+        :placeholder="params.placeholder"
         v-on:input="$emit('input', $event.target.value)"
     >        
     </textarea>
@@ -12,9 +13,7 @@
 
 <script>
     export default {
-        props: ['name', 'value', 'params'],
-        mounted() {
-            console.log('Component mounted.')
-        }
+        props: ['name', 'value', 'params']
+        
     }
 </script>

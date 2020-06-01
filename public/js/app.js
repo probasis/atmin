@@ -2081,6 +2081,30 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminFieldHidden.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AtminFieldHidden.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['name', 'value']
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminFieldRadio.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AtminFieldRadio.vue?vue&type=script&lang=js& ***!
@@ -2189,9 +2213,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['params', 'values'],
+  props: ['params', 'values', 'errors'],
   data: function data() {
     return {
       currentTab: 0
@@ -2226,11 +2249,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['name', 'value'],
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
+  props: ['name', 'value', 'params']
 });
 
 /***/ }),
@@ -2256,11 +2277,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['name', 'value', 'params'],
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
+  props: ['name', 'value', 'params']
 });
 
 /***/ }),
@@ -2356,8 +2375,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['fields', 'values'],
+  props: ['fields', 'values', 'errors'],
   data: function data() {
     return {
       labelCols: 2,
@@ -2365,12 +2386,20 @@ __webpack_require__.r(__webpack_exports__);
       submitText: 'OK'
     };
   },
+  methods: {
+    fieldErrors: function fieldErrors(name) {
+      if (this.errors && this.errors[name]) {
+        return this.errors[name];
+      } else {
+        return [];
+      }
+    }
+  },
   computed: {
     fieldCols: function fieldCols() {
       return 12 - this.labelCols;
     }
-  },
-  mounted: function mounted() {}
+  }
 });
 
 /***/ }),
@@ -2400,14 +2429,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['fields', 'values', 'method', 'action'],
   data: function data() {
     return {
       labelCols: 2,
       breakpoint: 'md',
-      submitText: 'OK'
+      submitText: 'OK',
+      errors: {},
+      error: null
     };
+  },
+  methods: {
+    submit: function submit(event) {
+      var _this = this;
+
+      event.preventDefault();
+      this.errors = {};
+      this.error = null;
+      axios({
+        method: this.method,
+        responseType: 'json',
+        url: this.action,
+        data: this.values
+      }).then(function (response) {})["catch"](function (error) {
+        var data = error.response.data;
+        _this.errors = data.errors;
+        _this.error = data.message;
+      });
+    }
   },
   computed: {
     fieldCols: function fieldCols() {
@@ -2416,9 +2472,6 @@ __webpack_require__.r(__webpack_exports__);
     csrf: function csrf() {
       return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     }
-  },
-  mounted: function mounted() {
-    console.log('Component mounted.');
   }
 });
 
@@ -37971,9 +38024,9 @@ var render = function() {
     _c("input", {
       staticClass: "custom-control-input",
       attrs: {
-        type: "checkbox",
-        name: _vm.name,
         id: "field-" + _vm.name,
+        name: _vm.name,
+        type: "checkbox",
         checked: "value"
       },
       on: {
@@ -37989,7 +38042,7 @@ var render = function() {
         staticClass: "custom-control-label",
         attrs: { for: "field-" + _vm.name }
       },
-      [_vm._v(_vm._s(_vm.params.text))]
+      [_vm._v(_vm._s(_vm.params ? _vm.params.text : ""))]
     )
   ])
 }
@@ -38215,6 +38268,33 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminFieldHidden.vue?vue&type=template&id=182f4070&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AtminFieldHidden.vue?vue&type=template&id=182f4070& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("input", {
+    attrs: { id: "field-" + _vm.name, name: _vm.name, type: "hidden" },
+    domProps: { value: _vm.value }
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminFieldRadio.vue?vue&type=template&id=42cf1e25&":
 /*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AtminFieldRadio.vue?vue&type=template&id=42cf1e25& ***!
@@ -38412,7 +38492,11 @@ var render = function() {
           },
           [
             _c("atmin-fields", {
-              attrs: { fields: tab.fields, values: _vm.values }
+              attrs: {
+                fields: tab.fields,
+                values: _vm.values,
+                errors: _vm.errors
+              }
             })
           ],
           1
@@ -38446,7 +38530,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("input", {
     staticClass: "form-control",
-    attrs: { id: "field-" + _vm.name, name: _vm.name, type: "text" },
+    attrs: {
+      id: "field-" + _vm.name,
+      name: _vm.name,
+      type: "text",
+      placeholder: _vm.params.placeholder
+    },
     domProps: { value: _vm.value },
     on: {
       input: function($event) {
@@ -38479,7 +38568,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("textarea", {
     staticClass: "form-control",
-    attrs: { id: "field-" + _vm.name, name: _vm.name, rows: _vm.params.rows },
+    attrs: {
+      id: "field-" + _vm.name,
+      name: _vm.name,
+      rows: _vm.params && _vm.params.rows ? _vm.params.rows : 3,
+      placeholder: _vm.params.placeholder
+    },
     domProps: { value: _vm.value },
     on: {
       input: function($event) {
@@ -38607,7 +38701,7 @@ var render = function() {
                 attrs: {
                   name: field.name,
                   values: _vm.values,
-                  params: field.params
+                  params: field.params ? field.params : {}
                 },
                 model: {
                   value: _vm.values[field.name],
@@ -38618,8 +38712,16 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              false
-                ? undefined
+              _vm.fieldErrors(field.name)
+                ? _vm._l(_vm.fieldErrors(field.name), function(error) {
+                    return _c("div", { staticClass: "text-danger" }, [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(error) +
+                          "\n                "
+                      )
+                    ])
+                  })
                 : _vm._e(),
               _vm._v(" "),
               field.hint
@@ -38632,7 +38734,7 @@ var render = function() {
                   ])
                 : _vm._e()
             ],
-            1
+            2
           )
         ])
       }),
@@ -38671,7 +38773,8 @@ var render = function() {
         action: _vm.action,
         method: "POST",
         enctype: "multipart/form-data"
-      }
+      },
+      on: { submit: _vm.submit }
     },
     [
       _c("input", {
@@ -38684,7 +38787,9 @@ var render = function() {
         domProps: { value: _vm.csrf }
       }),
       _vm._v(" "),
-      _c("atmin-fields", { attrs: { fields: _vm.fields, values: _vm.values } }),
+      _c("atmin-fields", {
+        attrs: { fields: _vm.fields, values: _vm.values, errors: _vm.errors }
+      }),
       _vm._v(" "),
       _c("div", { staticClass: "form-group row mt-4" }, [
         _c(
@@ -38703,7 +38808,15 @@ var render = function() {
                 attrs: { type: "submit" }
               },
               [_vm._v(_vm._s(_vm.submitText))]
-            )
+            ),
+            _vm._v(" "),
+            _vm.error
+              ? _c("div", { staticClass: "text-danger d-inline-block m-3" }, [
+                  _vm._v(
+                    "\n                " + _vm._s(_vm.error) + "\n            "
+                  )
+                ])
+              : _vm._e()
           ]
         )
       ])
@@ -50893,6 +51006,7 @@ var map = {
 	"./components/AtminFieldContent.vue": "./resources/js/components/AtminFieldContent.vue",
 	"./components/AtminFieldDate.vue": "./resources/js/components/AtminFieldDate.vue",
 	"./components/AtminFieldFile.vue": "./resources/js/components/AtminFieldFile.vue",
+	"./components/AtminFieldHidden.vue": "./resources/js/components/AtminFieldHidden.vue",
 	"./components/AtminFieldRadio.vue": "./resources/js/components/AtminFieldRadio.vue",
 	"./components/AtminFieldSelect.vue": "./resources/js/components/AtminFieldSelect.vue",
 	"./components/AtminFieldSeparator.vue": "./resources/js/components/AtminFieldSeparator.vue",
@@ -51013,28 +51127,36 @@ var fieldSetC = [{
 }, {
   name: 'fsc_2',
   label: 'Field C2',
-  component: 'text'
+  component: 'textarea'
 }, {
   name: 'fsc_3',
   label: 'Field C3',
-  component: 'text'
+  component: 'checkbox'
 }, {
   name: 'fsc_4',
   label: 'Field C4',
-  component: 'text'
+  component: 'date'
 }];
 var fields = [{
+  name: 'hidden_field',
+  component: 'hidden'
+}, {
   name: 'text_field',
   label: 'One line text',
   component: 'text',
-  hint: 'Here is some hint'
+  hint: 'Here is some hint',
+  params: {
+    placeholder: 'Enter short text'
+  }
 }, {
   name: 'textarea_field',
   label: 'Textarea',
+  placeholder: 'Enter short text',
   component: 'textarea',
   required: true,
   params: {
-    rows: 5
+    rows: 5,
+    placeholder: 'Type something long here...'
   }
 }, {
   name: 'select_field',
@@ -51111,31 +51233,39 @@ var fields = [{
   component: 'value',
   hint: 'Read-only value'
 }];
-var app = new Vue({
+var values = {
+  hidden_field: "the_value",
+  value_field: "Some static" + "\n" + "value",
+  text_field: 'Andrey Tushev',
+  textarea_field: "The" + "\n" + "developer",
+  select_field: 'fr',
+  radio_field: 'fr',
+  checkbox_field: true,
+  checkboxes_field: ['en', 'ru', 'fr'],
+  file_field: {
+    size: 123456789,
+    download: '/download/fild.pdf'
+  },
+  fsa_1: 'Aaaaa',
+  fsa_2: 'Bbbbb',
+  fsa_3: 'Ccccc',
+  fsb_1: 'Ddddd',
+  fsb_2: 'Eeeee',
+  fsc_1: 'Fffff'
+};
+new Vue({
   el: '#app',
   data: {
     fields: fields,
-    values: {
-      value_field: "Some static" + "\n" + "value",
-      text_field: 'Andrey Tushev',
-      textarea_field: "The" + "\n" + "developer",
-      select_field: 'fr',
-      radio_field: 'fr',
-      checkbox_field: true,
-      checkboxes_field: ['en', 'ru', 'fr'],
-      file_field: {
-        size: 123456789,
-        download: '/download/fild.pdf'
-      },
-      fsa_1: 'Aaaaa',
-      fsa_2: 'Bbbbb',
-      fsa_3: 'Ccccc',
-      fsb_1: 'Ddddd',
-      fsb_2: 'Eeeee',
-      fsc_1: 'Fffff'
-    }
-  },
-  mounted: function mounted() {}
+    values: values
+  }
+});
+new Vue({
+  el: '#ajax-form-app',
+  data: {
+    fields: fields,
+    values: values
+  }
 });
 
 /***/ }),
@@ -51525,6 +51655,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFieldFile_vue_vue_type_template_id_11ebd2c2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFieldFile_vue_vue_type_template_id_11ebd2c2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/AtminFieldHidden.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/AtminFieldHidden.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AtminFieldHidden_vue_vue_type_template_id_182f4070___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AtminFieldHidden.vue?vue&type=template&id=182f4070& */ "./resources/js/components/AtminFieldHidden.vue?vue&type=template&id=182f4070&");
+/* harmony import */ var _AtminFieldHidden_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AtminFieldHidden.vue?vue&type=script&lang=js& */ "./resources/js/components/AtminFieldHidden.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AtminFieldHidden_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AtminFieldHidden_vue_vue_type_template_id_182f4070___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AtminFieldHidden_vue_vue_type_template_id_182f4070___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/AtminFieldHidden.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/AtminFieldHidden.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/AtminFieldHidden.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFieldHidden_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./AtminFieldHidden.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminFieldHidden.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFieldHidden_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/AtminFieldHidden.vue?vue&type=template&id=182f4070&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/AtminFieldHidden.vue?vue&type=template&id=182f4070& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFieldHidden_vue_vue_type_template_id_182f4070___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./AtminFieldHidden.vue?vue&type=template&id=182f4070& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AtminFieldHidden.vue?vue&type=template&id=182f4070&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFieldHidden_vue_vue_type_template_id_182f4070___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AtminFieldHidden_vue_vue_type_template_id_182f4070___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

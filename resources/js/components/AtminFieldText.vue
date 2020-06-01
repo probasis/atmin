@@ -4,16 +4,14 @@
         :name="name"
         type="text" 
         class="form-control" 
-        v-bind:value="value"
+        :value="value"
+        :placeholder="params.placeholder"
         v-on:input="$emit('input', $event.target.value)"
     >
 </template>
 
 <script>
     export default {
-        props: ['name', 'value'],
-        mounted() {
-            console.log('Component mounted.')
-        }
+        props: ['name', 'value', 'params']
     }
 </script>

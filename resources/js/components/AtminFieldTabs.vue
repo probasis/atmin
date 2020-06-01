@@ -7,15 +7,14 @@
         </ul>
 
         <div v-for="(tab, t) in params.tabs" v-show="t==currentTab">
-            <atmin-fields :fields="tab.fields" :values="values"></atmin-fields>
+            <atmin-fields :fields="tab.fields" :values="values" :errors="errors"></atmin-fields>
         </div>
     </div>
-    
 </template>
 
 <script>
     export default {
-        props: ['params', 'values'],
+        props: ['params', 'values', 'errors'],
         data() {
             return {
                 currentTab: 0

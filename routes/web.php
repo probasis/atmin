@@ -17,5 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/form', 'Form@index');
+Route::get ('/form', 'Form@index');
 Route::post('/form', 'Form@post');
+
+Route::get ('/ajax-form', 'AjaxForm@index');
+Route::post('/ajax-form', 'AjaxForm@post');

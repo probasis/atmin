@@ -16,12 +16,14 @@
                     :name="field.name" 
                     v-model="values[field.name]" 
                     :values="values"
-                    :params="field.params"
+                    :params="field.params ? field.params : {}"
                 ></component>            
 
-                <div v-if="false" class="text-danger">
-                    Error message here
-                </div>                
+                <template v-if="fieldErrors(field.name)">
+                    <div class="text-danger" v-for="error in fieldErrors(field.name)">
+                        {{error}}
+                    </div>              
+                </template>    
                 
                 <small v-if="field.hint" class="form-text text-muted">
                     {{field.hint}}
@@ -36,7 +38,7 @@
 
 <script>
     export default {
-        props: ['fields','values'],  
+        props: ['fields','values','errors'],  
         data(){
             return {
                 labelCols: 2,
@@ -44,12 +46,20 @@
                 submitText: 'OK'
             };
         },
+        methods: {
+            fieldErrors(name) {
+                if(this.errors && this.errors[name]) {
+                    return this.errors[name];
+                }
+                else {
+                    return [];
+                }
+            }
+        },
         computed: {
             fieldCols() { 
                 return 12 - this.labelCols; 
             }
-        },
-        mounted() {           
         }
     }
 </script>

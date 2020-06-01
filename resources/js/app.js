@@ -50,25 +50,34 @@ const fieldSetB = [
 
 const fieldSetC = [
     {name: 'fsc_1',  label: 'Field C1', component: 'text'},
-    {name: 'fsc_2',  label: 'Field C2', component: 'text'},
-    {name: 'fsc_3',  label: 'Field C3', component: 'text'},
-    {name: 'fsc_4',  label: 'Field C4', component: 'text'}
+    {name: 'fsc_2',  label: 'Field C2', component: 'textarea'},
+    {name: 'fsc_3',  label: 'Field C3', component: 'checkbox'},
+    {name: 'fsc_4',  label: 'Field C4', component: 'date'}
 ];
 
 const fields = [
     {
+        name: 'hidden_field',        
+        component: 'hidden',
+    },     
+    {
         name: 'text_field',
         label: 'One line text',
-        component: 'text',
-        hint: 'Here is some hint'
+        component: 'text',        
+        hint: 'Here is some hint', 
+        params: {
+            placeholder: 'Enter short text'
+        }
     },         
     {
         name: 'textarea_field',
         label: 'Textarea',
+        placeholder: 'Enter short text',
         component: 'textarea',
         required: true,
         params: {
-            rows: 5
+            rows: 5,
+            placeholder: 'Type something long here...'
         }
     },        
     {
@@ -154,31 +163,37 @@ const fields = [
     },               
 ];
 
-const app = new Vue({
+let values = {
+    hidden_field: "the_value",
+    value_field: "Some static"+"\n"+"value",
+    text_field: 'Andrey Tushev',
+    textarea_field: "The"+"\n"+"developer",
+    select_field: 'fr',
+    radio_field: 'fr',
+    checkbox_field: true,
+    checkboxes_field: ['en', 'ru', 'fr'],            
+    file_field: {size: 123456789, download: '/download/fild.pdf'},            
+    fsa_1: 'Aaaaa',
+    fsa_2: 'Bbbbb',
+    fsa_3: 'Ccccc',
+    fsb_1: 'Ddddd',
+    fsb_2: 'Eeeee',
+    fsc_1: 'Fffff',            
+};
+
+new Vue({
     el: '#app',
     data: {
         fields: fields,
-        values: {
-            value_field: "Some static"+"\n"+"value",
-            text_field: 'Andrey Tushev',
-            textarea_field: "The"+"\n"+"developer",
-            select_field: 'fr',
-            radio_field: 'fr',
-            checkbox_field: true,
-            checkboxes_field: ['en', 'ru', 'fr'],            
-            file_field: {size: 123456789, download: '/download/fild.pdf'},
-            
-            fsa_1: 'Aaaaa',
-            fsa_2: 'Bbbbb',
-            fsa_3: 'Ccccc',
-            fsb_1: 'Ddddd',
-            fsb_2: 'Eeeee',
-            fsc_1: 'Fffff',            
-        }
-    },
-    mounted() {
-        
+        values: values
     }
 });
 
-
+new Vue({
+    el: '#ajax-form-app',
+    data: {
+        fields: fields,
+        values: values,
+        
+    },
+});
