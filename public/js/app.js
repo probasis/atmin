@@ -1922,6 +1922,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['name', 'params', 'value']
 });
@@ -1937,6 +1939,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -2004,6 +2008,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['name', 'value']
 });
@@ -2038,6 +2047,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['name', 'value'],
   computed: {
@@ -2046,7 +2057,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (v > 0) {
         if (v < 1000) {
-          return v + 'B';
+          return v + ' B';
         } else if (v < 1000000) {
           return Math.ceil(v / 1000) + ' KB';
         } else {
@@ -2054,6 +2065,15 @@ __webpack_require__.r(__webpack_exports__);
         }
       } else {
         return '-';
+      }
+    },
+    extension: function extension() {
+      var m = /\.(\w+)$/.exec(this.value.download);
+
+      if (m) {
+        return m[1];
+      } else {
+        return '';
       }
     }
   }
@@ -2085,6 +2105,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['name', 'params', 'value']
 });
@@ -2100,6 +2122,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -2196,6 +2222,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['name', 'value'],
   mounted: function mounted() {
@@ -2223,6 +2253,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['name', 'value', 'params'],
   mounted: function mounted() {
@@ -2241,6 +2274,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2361,6 +2399,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['fields', 'values', 'method', 'action'],
   data: function data() {
@@ -2373,6 +2412,9 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     fieldCols: function fieldCols() {
       return 12 - this.labelCols;
+    },
+    csrf: function csrf() {
+      return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     }
   },
   mounted: function mounted() {
@@ -37993,7 +38035,7 @@ var render = function() {
             staticClass: "custom-control-input",
             attrs: {
               type: "checkbox",
-              name: _vm.name,
+              name: _vm.name + "[]",
               id: "field-" + _vm.name + "-" + item.value
             },
             domProps: {
@@ -38103,7 +38145,7 @@ var render = function() {
   return _c("input", {
     staticClass: "form-control",
     staticStyle: { "max-width": "200px" },
-    attrs: { id: "field-" + _vm.name, type: "date" },
+    attrs: { id: "field-" + _vm.name, name: _vm.name, type: "date" },
     domProps: { value: _vm.value },
     on: {
       input: function($event) {
@@ -38138,7 +38180,12 @@ var render = function() {
     _c("div", { staticClass: "custom-file" }, [
       _c("input", {
         staticClass: "custom-file-input",
-        attrs: { id: "field-" + _vm.name, type: "file", id: "customFile" }
+        attrs: {
+          id: "field-" + _vm.name,
+          name: _vm.name,
+          type: "file",
+          id: "customFile"
+        }
       }),
       _vm._v(" "),
       _c(
@@ -38148,12 +38195,17 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("p", [
-      _c("a", { staticClass: "mr-5", attrs: { href: _vm.value.download } }, [
-        _vm._v("Download")
-      ]),
-      _vm._v("\n        Size: " + _vm._s(_vm.size) + "\n    ")
-    ])
+    _c(
+      "a",
+      { staticClass: "btn btn-link", attrs: { href: _vm.value.download } },
+      [_vm._v("Download")]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "d-inline-block mx-3" }, [
+      _vm._v(_vm._s(_vm.extension))
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "d-inline-block" }, [_vm._v(_vm._s(_vm.size))])
   ])
 }
 var staticRenderFns = []
@@ -38242,6 +38294,7 @@ var render = function() {
       "select",
       {
         staticClass: "form-control",
+        attrs: { name: "name" },
         on: {
           input: function($event) {
             return _vm.$emit("input", $event.target.value)
@@ -38284,9 +38337,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card border-0" }, [
-    _c("div", { staticClass: "card-header border-0 text-center p-1" }, [
-      _vm._v(_vm._s(_vm.params.text))
-    ])
+    _c(
+      "div",
+      {
+        staticClass:
+          "card-header border-0 text-center p-1 bg-secondary text-white"
+      },
+      [_vm._v(_vm._s(_vm.params.text))]
+    )
   ])
 }
 var staticRenderFns = []
@@ -38388,7 +38446,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("input", {
     staticClass: "form-control",
-    attrs: { id: "field-" + _vm.name, type: "text" },
+    attrs: { id: "field-" + _vm.name, name: _vm.name, type: "text" },
     domProps: { value: _vm.value },
     on: {
       input: function($event) {
@@ -38421,7 +38479,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("textarea", {
     staticClass: "form-control",
-    attrs: { id: "field-" + _vm.name, rows: _vm.params.rows },
+    attrs: { id: "field-" + _vm.name, name: _vm.name, rows: _vm.params.rows },
     domProps: { value: _vm.value },
     on: {
       input: function($event) {
@@ -38455,7 +38513,7 @@ var render = function() {
   return _c("input", {
     staticClass: "form-control",
     staticStyle: { "max-width": "200px" },
-    attrs: { id: "field-" + _vm.name, type: "time" },
+    attrs: { id: "field-" + _vm.name, name: _vm.name, type: "time" },
     domProps: { value: _vm.value },
     on: {
       input: function($event) {
@@ -38619,6 +38677,11 @@ var render = function() {
       _c("input", {
         attrs: { type: "hidden", name: "_method" },
         domProps: { value: _vm.method.toUpperCase() }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        attrs: { type: "hidden", name: "_token" },
+        domProps: { value: _vm.csrf }
       }),
       _vm._v(" "),
       _c("atmin-fields", { attrs: { fields: _vm.fields, values: _vm.values } }),
@@ -50960,97 +51023,98 @@ var fieldSetC = [{
   label: 'Field C4',
   component: 'text'
 }];
+var fields = [{
+  name: 'text_field',
+  label: 'One line text',
+  component: 'text',
+  hint: 'Here is some hint'
+}, {
+  name: 'textarea_field',
+  label: 'Textarea',
+  component: 'textarea',
+  required: true,
+  params: {
+    rows: 5
+  }
+}, {
+  name: 'select_field',
+  label: 'Select',
+  component: 'select',
+  required: true,
+  params: {
+    items: choicesExample
+  }
+}, {
+  name: 'radio_field',
+  label: 'Radio',
+  component: 'radio',
+  params: {
+    items: choicesExample
+  }
+}, {
+  name: 'checkboxes_field',
+  label: 'Multiple checkboxes',
+  component: 'checkboxes',
+  params: {
+    items: choicesExample
+  }
+}, {
+  name: 'checkbox_field',
+  label: 'Single checkbox',
+  component: 'checkbox',
+  params: {
+    text: 'Extra text for the checkbox'
+  }
+}, {
+  name: 'date_field',
+  label: 'Date',
+  component: 'date'
+}, {
+  name: 'time_field',
+  label: 'Time',
+  component: 'time'
+}, {
+  name: 'file_field',
+  label: 'File upload',
+  component: 'file',
+  params: {}
+}, {
+  label: 'Tabs with fields',
+  component: 'tabs',
+  params: {
+    tabs: [{
+      title: 'Tab A',
+      fields: fieldSetA
+    }, {
+      title: 'Tab B',
+      fields: fieldSetB
+    }, {
+      title: 'Tab C',
+      fields: fieldSetC
+    }]
+  }
+}, {
+  component: 'separator',
+  params: {
+    text: 'This is a separator'
+  }
+}, {
+  label: 'Static content',
+  component: 'content',
+  params: {
+    text: "This is plain text content\nwith pre-wrap style",
+    html: "Here is a bit of <b>HTML</b> code"
+  }
+}, {
+  name: 'value_field',
+  label: 'Value field',
+  component: 'value',
+  hint: 'Read-only value'
+}];
 var app = new Vue({
   el: '#app',
   data: {
-    fields: [{
-      name: 'text_field',
-      label: 'One line text',
-      component: 'text',
-      hint: 'Here is some hint'
-    }, {
-      name: 'textarea_field',
-      label: 'Textarea',
-      component: 'textarea',
-      required: true,
-      params: {
-        rows: 5
-      }
-    }, {
-      name: 'select_field',
-      label: 'Select',
-      component: 'select',
-      required: true,
-      params: {
-        items: choicesExample
-      }
-    }, {
-      name: 'radio_field',
-      label: 'Radio',
-      component: 'radio',
-      params: {
-        items: choicesExample
-      }
-    }, {
-      name: 'checkboxes_field',
-      label: 'Multiple checkboxes',
-      component: 'checkboxes',
-      params: {
-        items: choicesExample
-      }
-    }, {
-      name: 'checkbox_field',
-      label: 'Single checkbox',
-      component: 'checkbox',
-      params: {
-        text: 'Extra text for the checkbox'
-      }
-    }, {
-      name: 'date_field',
-      label: 'Date',
-      component: 'date'
-    }, {
-      name: 'time_field',
-      label: 'Time',
-      component: 'time'
-    }, {
-      name: 'file_field',
-      label: 'File upload',
-      component: 'file',
-      params: {}
-    }, {
-      label: 'Tabs with fields',
-      component: 'tabs',
-      params: {
-        tabs: [{
-          title: 'Tab A',
-          fields: fieldSetA
-        }, {
-          title: 'Tab B',
-          fields: fieldSetB
-        }, {
-          title: 'Tab C',
-          fields: fieldSetC
-        }]
-      }
-    }, {
-      component: 'separator',
-      params: {
-        text: 'This is a separator'
-      }
-    }, {
-      label: 'Static content',
-      component: 'content',
-      params: {
-        text: "This is plain text content\nwith pre-wrap style",
-        html: "Here is a bit of <b>HTML</b> code"
-      }
-    }, {
-      name: 'value_field',
-      label: 'Value field',
-      component: 'value',
-      hint: 'Read-only value'
-    }],
+    fields: fields,
     values: {
       value_field: "Some static" + "\n" + "value",
       text_field: 'Andrey Tushev',
@@ -51061,7 +51125,7 @@ var app = new Vue({
       checkboxes_field: ['en', 'ru', 'fr'],
       file_field: {
         size: 123456789,
-        download: '/download'
+        download: '/download/fild.pdf'
       },
       fsa_1: 'Aaaaa',
       fsa_2: 'Bbbbb',

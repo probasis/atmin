@@ -1,9 +1,11 @@
 <template>
 
     <div class="custom-control custom-checkbox mt-1">
-        <input type="checkbox" class="custom-control-input" 
+        <input 
+            type="checkbox" 
+            class="custom-control-input" 
             :name="name" 
-            :id="`field-${name}`" 
+            :id="`field-${name}`"             
             checked="value" 
             v-on:change="$emit('input', $event.target.checked)"       
         >             

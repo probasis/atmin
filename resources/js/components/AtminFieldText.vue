@@ -1,5 +1,9 @@
 <template>
-    <input :id="'field-'+name" type="text" class="form-control" 
+    <input 
+        :id="'field-'+name" 
+        :name="name"
+        type="text" 
+        class="form-control" 
         v-bind:value="value"
         v-on:input="$emit('input', $event.target.value)"
     >

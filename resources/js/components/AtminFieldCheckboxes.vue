@@ -1,8 +1,10 @@
 <template>
     <div class="mt-1">
         <div v-for="item in params.items" class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" class="custom-control-input" 
-                :name="name" 
+            <input 
+                type="checkbox" 
+                class="custom-control-input" 
+                :name="name+'[]'" 
                 :id="`field-${name}-${item.value}`" 
                 :value="item.value"
                 v-model="checks"  

@@ -55,109 +55,109 @@ const fieldSetC = [
     {name: 'fsc_4',  label: 'Field C4', component: 'text'}
 ];
 
+const fields = [
+    {
+        name: 'text_field',
+        label: 'One line text',
+        component: 'text',
+        hint: 'Here is some hint'
+    },         
+    {
+        name: 'textarea_field',
+        label: 'Textarea',
+        component: 'textarea',
+        required: true,
+        params: {
+            rows: 5
+        }
+    },        
+    {
+        name: 'select_field',
+        label: 'Select',
+        component: 'select',
+        required: true,
+        params: {
+            items: choicesExample
+        }
+    },              
+    {
+        name: 'radio_field',
+        label: 'Radio',
+        component: 'radio',
+        params: {
+            items: choicesExample
+        }
+    },      
+    {
+        name: 'checkboxes_field',
+        label: 'Multiple checkboxes',
+        component: 'checkboxes',
+        params: {
+            items: choicesExample
+        }
+    },            
+    {
+        name: 'checkbox_field',
+        label: 'Single checkbox',
+        component: 'checkbox',
+        params: {
+            text: 'Extra text for the checkbox'
+        }
+    },    
+    {
+        name: 'date_field',
+        label: 'Date',
+        component: 'date',                
+    },              
+    {
+        name: 'time_field',
+        label: 'Time',
+        component: 'time',                
+    },                          
+    {
+        name: 'file_field',
+        label: 'File upload',
+        component: 'file',
+        params: {                     
+        }
+    },             
+    {              
+        label: 'Tabs with fields',
+        component: 'tabs',
+        params: {
+            tabs: [                        
+                {title: 'Tab A', fields: fieldSetA},
+                {title: 'Tab B', fields: fieldSetB},
+                {title: 'Tab C', fields: fieldSetC},                        
+            ]
+        }
+    },                         
+    {                                
+        component: 'separator',
+        params: {
+            text: 'This is a separator'
+        }
+    },    
+    {                           
+        label: 'Static content',
+        component: 'content',
+        params: {
+            text: "This is plain text content\nwith pre-wrap style",
+            html: "Here is a bit of <b>HTML</b> code"
+        }
+    },     
+    {
+        name: 'value_field',
+        label: 'Value field',
+        component: 'value',
+        hint: 'Read-only value'
+    },               
+];
+
 const app = new Vue({
     el: '#app',
     data: {
-
-        fields: [
-            {
-                name: 'text_field',
-                label: 'One line text',
-                component: 'text',
-                hint: 'Here is some hint'
-            },         
-            {
-                name: 'textarea_field',
-                label: 'Textarea',
-                component: 'textarea',
-                required: true,
-                params: {
-                    rows: 5
-                }
-            },        
-            {
-                name: 'select_field',
-                label: 'Select',
-                component: 'select',
-                required: true,
-                params: {
-                    items: choicesExample
-                }
-            },              
-            {
-                name: 'radio_field',
-                label: 'Radio',
-                component: 'radio',
-                params: {
-                    items: choicesExample
-                }
-            },      
-            {
-                name: 'checkboxes_field',
-                label: 'Multiple checkboxes',
-                component: 'checkboxes',
-                params: {
-                    items: choicesExample
-                }
-            },            
-            {
-                name: 'checkbox_field',
-                label: 'Single checkbox',
-                component: 'checkbox',
-                params: {
-                    text: 'Extra text for the checkbox'
-                }
-            },    
-            {
-                name: 'date_field',
-                label: 'Date',
-                component: 'date',                
-            },              
-            {
-                name: 'time_field',
-                label: 'Time',
-                component: 'time',                
-            },                          
-            {
-                name: 'file_field',
-                label: 'File upload',
-                component: 'file',
-                params: {                     
-                }
-            },             
-            {              
-                label: 'Tabs with fields',
-                component: 'tabs',
-                params: {
-                    tabs: [                        
-                        {title: 'Tab A', fields: fieldSetA},
-                        {title: 'Tab B', fields: fieldSetB},
-                        {title: 'Tab C', fields: fieldSetC},                        
-                    ]
-                }
-            },                         
-            {                                
-                component: 'separator',
-                params: {
-                    text: 'This is a separator'
-                }
-            },    
-            {                           
-                label: 'Static content',
-                component: 'content',
-                params: {
-                    text: "This is plain text content\nwith pre-wrap style",
-                    html: "Here is a bit of <b>HTML</b> code"
-                }
-            },     
-            {
-                name: 'value_field',
-                label: 'Value field',
-                component: 'value',
-                hint: 'Read-only value'
-            },               
-            
-        ],
+        fields: fields,
         values: {
             value_field: "Some static"+"\n"+"value",
             text_field: 'Andrey Tushev',
@@ -166,7 +166,7 @@ const app = new Vue({
             radio_field: 'fr',
             checkbox_field: true,
             checkboxes_field: ['en', 'ru', 'fr'],            
-            file_field: {size: 123456789, download: '/download'},
+            file_field: {size: 123456789, download: '/download/fild.pdf'},
             
             fsa_1: 'Aaaaa',
             fsa_2: 'Bbbbb',

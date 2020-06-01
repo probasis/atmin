@@ -1,6 +1,7 @@
 <template>
     <form :action="action" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="_method" :value="method.toUpperCase()">        
+        <input type="hidden" name="_token" :value="csrf">
      
         <atmin-fields :fields="fields" :values="values"></atmin-fields>
         
@@ -26,6 +27,9 @@
         computed: {
             fieldCols() { 
                 return 12 - this.labelCols; 
+            },
+            csrf() {
+                return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             }
         },
         mounted() {

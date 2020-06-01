@@ -1,5 +1,8 @@
 <template>
-    <textarea :id="'field-'+name" class="form-control" 
+    <textarea 
+        :id="'field-'+name" 
+        :name="name"
+        class="form-control" 
         :rows="params.rows"      
         :value="value" 
         v-on:input="$emit('input', $event.target.value)"
