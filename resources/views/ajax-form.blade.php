@@ -9,7 +9,7 @@
         :values="values" 
         method="post" 
         action="/ajax-form"
-        ajax="true"
+        v-bind:ajax="true"
     ></atmin-form>
 </div>
 @endsection

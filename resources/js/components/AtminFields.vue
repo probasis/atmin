@@ -1,15 +1,14 @@
 <template>
     <div>
         <div class="form-group row" v-for="field in fields">
-            <label :for="'field-'+field.name" class="col-form-label" :class="`col-${breakpoint}-${labelCols}`">
-                {{field.label}}
-                
-                <span v-if="field.required" class="text-danger">
-                    *
-                </span>                
-            </label>                        
+            <template v-if="(field.label !== null)">
+                <label :for="'field-'+field.name" class="col-form-label" :class="`col-${breakpoint}-${labelCols}`">
+                    {{field.label}}
+                    <span v-if="field.required" class="text-danger">*</span>                
+                </label>  
+            </template>    
             
-            <div :class="`col-${breakpoint}-${fieldCols}`">
+            <div :class="(field.label === null) ? `col-${breakpoint}-12` : `col-${breakpoint}-${fieldCols}`">
                 
                 <component 
                     v-bind:is="'atmin-field-' + field.component" 
@@ -31,8 +30,7 @@
                 
             </div>
         </div>
-        
-        <hr>
+
     </div>
 </template>
 

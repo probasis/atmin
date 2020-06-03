@@ -9,6 +9,8 @@
         <div v-for="(tab, t) in params.tabs" v-show="t==currentTab">
             <atmin-fields :fields="tab.fields" :values="values" :errors="errors"></atmin-fields>
         </div>
+                        
+        <hr>
     </div>
 </template>
 

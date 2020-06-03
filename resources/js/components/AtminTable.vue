@@ -7,18 +7,20 @@
         >        
         </atmin-pagination>
 
-        <table class="table table-bordered table-sm">
-            <thead>
-                <tr>
-                    <th v-for="column in columns">{{column.label}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="row in rows">
-                    <td v-for="column in columns">{{row[column.name]}}</td>
-                </tr>            
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th v-for="column in columns">{{column.label}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="row in rows">
+                        <td v-for="column in columns">{{row[column.name]}}</td>
+                    </tr>            
+                </tbody>
+            </table>
+        </div>
     </div>
 </template>
 

@@ -4,6 +4,8 @@
         <input type="hidden" name="_token" :value="csrf">
      
         <atmin-fields :fields="fields" :values="values" :errors="errors"></atmin-fields>
+                        
+        <hr>
         
         <div class="form-group row mt-4">            
             <div :class="[`col-${breakpoint}-${fieldCols}`, `offset-${breakpoint}-${labelCols}`]">                                
