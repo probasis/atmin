@@ -1,16 +1,25 @@
 <template>
-    <table class="table table-bordered table-sm">
-        <thead>
-            <tr>
-                <th v-for="column in columns">{{column.label}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="row in rows">
-                <td v-for="column in columns">{{row[column.name]}}</td>
-            </tr>            
-        </tbody>
-    </table>
+    
+    <div>
+        <atmin-pagination
+            @change="page=$event; loadTable()"
+            :lastPage="lastPage"
+        >        
+        </atmin-pagination>
+
+        <table class="table table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th v-for="column in columns">{{column.label}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="row in rows">
+                    <td v-for="column in columns">{{row[column.name]}}</td>
+                </tr>            
+            </tbody>
+        </table>
+    </div>
 </template>
 
 <script>
@@ -20,7 +29,9 @@
             columns: {type: Array},
         },   
         data(){
-            return {                
+            return {    
+                page: 1,
+                lastPage: 1,
                 rows: [                    
                 ]
             };
@@ -28,12 +39,13 @@
         methods: {
             loadTable() {
                 axios({
-                    method: 'get',                    
+                    method: 'get',   
+                    params: {page: this.page},
                     url:    this.resourceUrl                    
                 })
                 .then(response => {          
-                    this.rows = response.data.data;
-            
+                    this.rows     = response.data.data;
+                    this.lastPage = response.data.last_page;
                 })                
             }
         },

@@ -15,7 +15,7 @@ class DemoResource extends Controller
     public function index()
     {
         //return Demo::all();
-        return Demo::paginate();
+        return Demo::paginate(10);
     }
 
     /**
