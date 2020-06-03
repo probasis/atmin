@@ -6,12 +6,10 @@
                 
                 <form @submit.prevent="loadTable()">
                     <div class="input-group mb-3">
-
-                            <input v-model="searchQuery" type="text" class="form-control">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">Search</button>
-                            </div>
-
+                        <input v-model="searchQuery" type="text" class="form-control">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </div>
                     </div>        
                 </form>                
                 
@@ -19,11 +17,11 @@
             <div class="col-md-8">            
                 <atmin-pagination class="justify-content-end"
                     @change="page=$event; loadTable()"
-                    :lastPage="lastPage"
+                    :page="page"
+                    :lastPage="lastPage"                    
                 ></atmin-pagination>                                           
             </div>            
         </div>
-        
         
 
         <div class="table-responsive">
@@ -69,6 +67,7 @@
                     url:    this.resourceUrl                    
                 })
                 .then(response => {          
+                    this.page     = 1;
                     this.rows     = response.data.data;
                     this.lastPage = response.data.last_page;
                 })                
