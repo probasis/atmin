@@ -7,6 +7,7 @@
     <atmin-table 
         resource-url = "/resources/demo"
         :columns = "columns"
+        @select="onRowSelect($event)"
     ></atmin-table>
 </div>
 @endsection

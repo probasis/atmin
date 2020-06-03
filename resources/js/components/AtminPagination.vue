@@ -1,25 +1,25 @@
 <template>
-    <nav>
-      <ul class="pagination">
-        <li class="page-item" :class="{disabled: !(this.currentPage > 1)}">
-            <a class="page-link" href="#" aria-label="Previous" @click.prevent="prevPage()">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        
-        <template v-for="p in lastPage">
-            <li class="page-item" :class="{active: p==currentPage}" v-if="Math.abs(p-currentPage) <= gap">
-                <a class="page-link" href="#" @click.prevent="setPage(p)">{{p}}</a>
-            </li>
-        </template>        
-        
-        <li class="page-item" :class="{disabled: !(this.currentPage < this.lastPage)}">
-          <a class="page-link" href="#" aria-label="Next" @click.prevent="nextPage()">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+    
+    <ul class="pagination">
+      <li class="page-item" :class="{disabled: !(this.currentPage > 1)}">
+          <a class="page-link" href="#" aria-label="Previous" @click.prevent="prevPage()">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+
+      <template v-for="p in lastPage">
+          <li class="page-item" :class="{active: p==currentPage}" v-if="Math.abs(p-currentPage) <= gap">
+              <a class="page-link" href="#" @click.prevent="setPage(p)">{{p}}</a>
+          </li>
+      </template>        
+
+      <li class="page-item" :class="{disabled: !(this.currentPage < this.lastPage)}">
+        <a class="page-link" href="#" aria-label="Next" @click.prevent="nextPage()">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+    
 </template>
 
 <script>

@@ -6,16 +6,19 @@ use Illuminate\Http\Request;
 use App\Demo;
 
 class DemoResource extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+{    
+    public function index(Request $req)
     {
-        //return Demo::all();
-        return Demo::paginate(10);
+        if($req->search) {
+            return Demo
+                ::where  ('title', 'LIKE', '%'.$req->search.'%')
+                ->orWhere('text',  'LIKE', '%'.$req->search.'%')
+                ->paginate(10);
+        }
+        else {
+            return Demo
+                ::paginate(10);
+        }
     }
 
     /**

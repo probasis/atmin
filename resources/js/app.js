@@ -34,6 +34,9 @@ new Vue({
 new Vue({
     el: '#table-app',
     data: {
-        columns: config.columns
+        columns: config.columns,
+        onRowSelect(row){
+            console.log('Row select', row.id);
+        }
     }
 });
