@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-4">
                 
-                <form @submit.prevent="loadTable()">
+                <form @submit.prevent="page=1; loadTable()">
                     <div class="input-group mb-3">
                         <input v-model="searchQuery" type="text" class="form-control">
                         <div class="input-group-append">
@@ -66,8 +66,7 @@
                     params: {page: this.page, search: this.searchQuery},
                     url:    this.resourceUrl                    
                 })
-                .then(response => {          
-                    this.page     = 1;
+                .then(response => {                              
                     this.rows     = response.data.data;
                     this.lastPage = response.data.last_page;
                 })                
