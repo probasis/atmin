@@ -70,6 +70,19 @@ const fields = [
         }
     },         
     {
+        name: 'short_text_field',
+        label: 'Short text',
+        component: 'text',                
+        params: {
+            width: '150px'
+        }
+    },    
+    {
+        name: 'number_field',
+        label: 'Number text',
+        component: 'number',                
+    },     
+    {
         name: 'textarea_field',
         label: 'Textarea',
         placeholder: 'Enter short text',
@@ -181,8 +194,15 @@ let values = {
     fsc_1: 'Fffff',            
 };
 
+let columns = [
+    {name:'id',     label:'Id'},
+    {name:'title',  label:'Title'},
+    {name:'text',   label:'Text'},
+    {name:'choice', label:'Choice'}                    
+];
+
 new Vue({
-    el: '#app',
+    el: '#simple-form-app',
     data: {
         fields: fields,
         values: values
@@ -193,7 +213,13 @@ new Vue({
     el: '#ajax-form-app',
     data: {
         fields: fields,
-        values: values,
-        
-    },
+        values: values,        
+    }
+});
+
+new Vue({
+    el: '#table-app',
+    data: {
+        columns: columns
+    }
 });

@@ -4,6 +4,7 @@
         :name="name"
         type="text" 
         class="form-control" 
+        :style="{'max-width': params.width}"
         :value="value"
         :placeholder="params.placeholder"
         v-on:input="$emit('input', $event.target.value)"

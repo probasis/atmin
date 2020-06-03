@@ -9,6 +9,7 @@
         :values="values" 
         method="post" 
         action="/ajax-form"
+        ajax="true"
     ></atmin-form>
 </div>
 @endsection

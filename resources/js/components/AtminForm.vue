@@ -22,7 +22,13 @@
 
 <script>
     export default {
-        props: ['fields','values','method','action'],   
+        props: {
+            fields: {type: Array},
+            values: {type: Object,  default: {}},
+            method: {type: String,  default: 'post'},
+            action: {type: String,  default: '?'},
+            ajax:   {type: Boolean, default: false},
+        },   
         data(){
             return {
                 labelCols: 2,
@@ -34,11 +40,15 @@
         },
         methods: {
             submit(event) {
-                event.preventDefault();
-                
-                this.errors = {};
-                this.error = null;
-                
+                if(this.ajax) {
+                    event.preventDefault();                
+                    this.ajaxSubmit();
+                }
+                else {
+                    
+                }
+            },
+            ajaxSubmit() {
                 axios({
                     method: this.method,
                     responseType: 'json',
@@ -48,10 +58,13 @@
                 .then(response => {                
                 })                
                 .catch((error) => {                 
+                    this.errors = {};
+                    this.error = null;                    
+                    
                     const data = error.response.data;            
                     this.errors = data.errors;
                     this.error  = data.message;
-                });
+                });                
             }
         },
         computed: {
