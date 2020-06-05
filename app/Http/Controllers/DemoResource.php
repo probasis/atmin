@@ -15,8 +15,7 @@ class DemoResource extends Controller
             $res->where  ('title', 'LIKE', '%'.$request->search.'%');
             $res->orWhere('text',  'LIKE', '%'.$request->search.'%');               
         }        
-        return $res->paginate(10);
-        
+        return $res->paginate(10);        
     }
 
     public function create() {        
@@ -38,10 +37,16 @@ class DemoResource extends Controller
     }
 
     public function update(Demo $demo, Request $request) {
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'text'  => 'required|min:10',
+        ]);        
         $demo->fill($request->all());
         $demo->save();
     }
 
-    public function destroy(Demo $demo) {        
+    public function destroy(Demo $demo) {  
+        //abort(403, 'Ooops');
+        $demo->delete();
     }
 }

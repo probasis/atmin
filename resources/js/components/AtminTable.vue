@@ -1,10 +1,16 @@
 <template>
     
     <div>
-        <div class="row">
-            <div class="col-md-4">
+        <div class="row justify-content-md-between">
+            <div class="col-md-auto" v-if="createButton">
+                <button class="btn btn-primary mb-3" @click="$emit('create')">
+                    Create
+                </button>             
+            </div>
+            
+            <div class="col-md-auto">
                 
-                <form @submit.prevent="page=1; loadTable()">
+                <form @submit.prevent="page=1; loadTable()" class="justify-content-center">
                     <div class="input-group mb-3">
                         <input v-model="searchQuery" type="text" class="form-control">
                         <div class="input-group-append">
@@ -14,7 +20,7 @@
                 </form>                
                 
             </div>
-            <div class="col-md-8">            
+            <div class="col-md-auto">            
                 <atmin-pagination class="justify-content-end"
                     @change="page=$event; loadTable()"
                     :page="page"
@@ -29,14 +35,18 @@
                     <tr>
                         <th v-if="selectButtons"></th>
                         <th v-for="column in columns">{{column.label}}</th>
+                        <th v-if="deleteButtons"></th>                                                
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(row, r) in rows" :class="{'table-active': (r===selectedRowNum)}">
+                    <tr v-for="(row, r) in rows" :class="{'table-active': (row===selectedRow)}">
                         <th v-if="selectButtons">
-                            <a href="#" class="btn btn-primary btn-sm" @click="onSelectRow(row, r)">➤</a>
+                            <a href="#" class="btn btn-primary btn-sm" @click="onSelectRow(row)">➤</a>
                         </th>
                         <td v-for="column in columns">{{row[column.name]}}</td>
+                        <th v-if="deleteButtons">
+                            <a href="#" class="btn btn-primary btn-sm" @click="onDeleteRow(row)">&times;</a>
+                        </th>                        
                     </tr>            
                 </tbody>
             </table>
@@ -50,21 +60,23 @@
             resourceUrl:    {type: String},
             columns:        {type: Array},
             selectButtons:  {type: Boolean, default: false},
+            deleteButtons:  {type: Boolean, default: false},
+            createButton:   {type: Boolean, default: false},
         },   
         data(){
             return {    a:!false,
                 page: 1,
                 lastPage: 1,
-                
-                rows: [],
-                
-                selectedRowNum: null,
                 searchQuery: '',
+                
+                rows: [],                
+                selectedRow: null,
             };
         },
         methods: {
             loadTable() {
-                this.selectedRowNum = null;
+                this.selectedRow = null;
+                
                 axios({
                     method: 'get',   
                     params: {page: this.page, search: this.searchQuery},
@@ -75,9 +87,13 @@
                     this.lastPage = response.data.last_page;
                 })                
             },
-            onSelectRow(row, r) {
-                this.selectedRowNum = r;
+            onSelectRow(row) {
+                this.selectedRow = row;
                 this.$emit('select', row);
+            },
+            onDeleteRow(row) {
+                this.selectedRow = row;
+                this.$emit('delete', row)
             }
         },
         computed: {

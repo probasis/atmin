@@ -59,7 +59,8 @@
                     method: method,                    
                     data:   this.values
                 })
-                .then(response => {                
+                .then(response => {        
+                    this.$emit('success-submit');
                 })                
                 .catch((error) => {                 
                     this.errors = {};

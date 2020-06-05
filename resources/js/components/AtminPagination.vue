@@ -8,7 +8,7 @@
         </li>
 
         <template v-for="p in lastPage">
-            <li class="page-item" :class="{active: p==page}" v-if="Math.abs(p-page) <= gap">
+            <li class="page-item" :class="{active: p==page}" v-if="isPageVisible(p)">
                 <a class="page-link" href="#" @click.prevent="setPage(p)">{{p}}</a>
             </li>
         </template>        
@@ -25,7 +25,7 @@
 <script>
     export default {
         props: {            
-            gap:        {type: Number, default: 5},
+            size:       {type: Number, default: 7},
             lastPage:   {type: Number, default: 1},
             page:       {type: Number, default: 1}
         },   
@@ -46,6 +46,21 @@
             },            
             setPage(page) {                
                 this.$emit('change', page);
+            },
+            isPageVisible(p) {        
+                let w = Math.floor(this.size/2);
+                let left  = this.page - w;
+                let right = this.page + w;
+                
+                if(left <= 0) {
+                    right += -left+1
+                }
+                if(right >= this.lastPage) {
+                    left += this.lastPage - right
+                }                
+                console.log(left, right);
+                
+                return (left <= p && p <= right)
             }
         },
         computed: {
