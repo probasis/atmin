@@ -27,7 +27,13 @@
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/table">Table</a>
-                </li>                
+                </li>          
+                <li class="nav-item active">
+                    <a class="nav-link" href="/crud-table">CRUD table</a>
+                </li> 
+                <li class="nav-item active">
+                    <a class="nav-link" href="/crud-tree">CRUD tree</a>
+                </li>                 
             </ul>
         </div>
     </nav>

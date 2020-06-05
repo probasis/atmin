@@ -1,4 +1,4 @@
-export {fields, values, columns} 
+export {fields, values, columns, crudFields} 
 
 const choicesExample =  [
     {value:"en", text:"English"},
@@ -29,7 +29,7 @@ const fieldSetC = [
 ];
 
 const fieldCol1 = [
-{
+    {
         name: 'select_field',
         label: 'Select',
         component: 'select',
@@ -189,4 +189,37 @@ const columns = [
     {name:'title',  label:'Title'},
     {name:'text',   label:'Text'},
     {name:'choice', label:'Choice'}                    
+];
+
+const crudFields = [
+    {
+        name: 'id',
+        label: 'Id',
+        component: 'value',                
+    },                 
+    {
+        name: 'title',
+        label: 'Title',
+        component: 'text',                
+    },             
+    {
+        name: 'text',
+        label: 'Text',
+        component: 'textarea',                
+    },       
+    {
+        name: 'choice',
+        label: 'Choice',
+        component: 'radio',
+        params: {
+            items: [
+                {value:'a', text:'Alfa'},
+                {value:'b', text:'Bravo'},
+                {value:'c', text:'Charlie'},
+                {value:'d', text:'Delta'},
+                {value:'e', text:'Echo'},
+                {value:'f', text:'Foxtrot'}
+            ]
+        }
+    },     
 ];

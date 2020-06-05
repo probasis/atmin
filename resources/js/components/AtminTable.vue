@@ -22,17 +22,20 @@
                 ></atmin-pagination>                                           
             </div>            
         </div>
-        
 
         <div class="table-responsive">
             <table class="table table-bordered table-sm table-hover">
                 <thead class="thead-dark">
                     <tr>
+                        <th v-if="selectButtons"></th>
                         <th v-for="column in columns">{{column.label}}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(row, r) in rows" @click="onSelectRow(row, r)" :class="{'table-active': (r===selectedRowNum)}">
+                    <tr v-for="(row, r) in rows" :class="{'table-active': (r===selectedRowNum)}">
+                        <th v-if="selectButtons">
+                            <a href="#" class="btn btn-primary btn-sm" @click="onSelectRow(row, r)">➤</a>
+                        </th>
                         <td v-for="column in columns">{{row[column.name]}}</td>
                     </tr>            
                 </tbody>
@@ -44,11 +47,12 @@
 <script>
     export default {
         props: {
-            resourceUrl: {type: String},
-            columns: {type: Array},
+            resourceUrl:    {type: String},
+            columns:        {type: Array},
+            selectButtons:  {type: Boolean, default: false},
         },   
         data(){
-            return {    
+            return {    a:!false,
                 page: 1,
                 lastPage: 1,
                 

@@ -6,7 +6,7 @@
             :name="name"             
             type="checkbox" 
             class="custom-control-input"                         
-            checked="value" 
+            :checked="isChecked" 
             v-on:change="$emit('input', $event.target.checked)"       
         >             
         <label :for="`field-${name}`" class="custom-control-label">{{params ? params.text : ''}}</label> 
@@ -20,6 +20,11 @@
             'name', 
             'params', 
             'value'
-        ]       
+        ],
+        computed: {
+            isChecked() {
+                return !!(this.value)
+            }
+        }
     } 
 </script>

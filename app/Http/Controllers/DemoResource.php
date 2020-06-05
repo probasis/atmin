@@ -7,83 +7,41 @@ use App\Demo;
 
 class DemoResource extends Controller
 {    
-    public function index(Request $req)
-    {
-        if($req->search) {
-            return Demo
-                ::where  ('title', 'LIKE', '%'.$req->search.'%')
-                ->orWhere('text',  'LIKE', '%'.$req->search.'%')
-                ->paginate(10);
-        }
-        else {
-            return Demo
-                ::paginate(10);
-        }
+    public function index(Request $request) {
+        //return ['data'=>Demo::all()];
+        
+        $res = Demo::orderBy('id', 'desc');
+        if($request->search) {            
+            $res->where  ('title', 'LIKE', '%'.$request->search.'%');
+            $res->orWhere('text',  'LIKE', '%'.$request->search.'%');               
+        }        
+        return $res->paginate(10);
+        
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function create() {        
+        return new Demo;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request)  {    
+        $demo = new Demo;
+        $demo->fill($request->all());
+        $demo->save();        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    public function show(Demo $demo) {
+        return $demo;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function edit(Demo $demo) {
+        return $demo;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Demo $demo, Request $request) {
+        $demo->fill($request->all());
+        $demo->save();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function destroy(Demo $demo) {        
     }
 }

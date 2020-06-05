@@ -6,6 +6,7 @@
 
     <atmin-table 
         resource-url = "/resources/demo"
+        :select-buttons = "false"
         :columns = "columns"
         @select="onRowSelect($event)"
     ></atmin-table>

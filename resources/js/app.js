@@ -18,18 +18,20 @@ import * as config from './demo-config.js';
 new Vue({
     el: '#simple-form-app',
     data: {
-        fields: config.fields,
-        values: config.values
-    }
+        fields: config.fields,      
+        values: {},
+        valuesUrl: '/ajax-form/values', // Non reactive!!!
+    }    
 });
 
 new Vue({
     el: '#ajax-form-app',
     data: {
         fields: config.fields,
-        values: config.values,        
+        values: config.values
     }
 });
+
 
 new Vue({
     el: '#table-app',
@@ -37,6 +39,17 @@ new Vue({
         columns: config.columns,
         onRowSelect(row){
             console.log('Row select', row.id);
+        }
+    }
+});
+
+new Vue({
+    el: '#crud-table-app',
+    data: {
+        columns: config.columns,
+        fields: config.crudFields,
+        onRowSelect(row){
+            alert('Row select '+row.id);
         }
     }
 });

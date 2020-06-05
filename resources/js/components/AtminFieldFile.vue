@@ -12,16 +12,19 @@
             <label class="custom-file-label" for="customFile">Choose file</label>
         </div>    
         
-        <a :href="value.download" class="btn btn-link">Download</a>
-        <div class="d-inline-block mx-3">{{extension}}</div>           
-        <div class="d-inline-block">{{size}}</div>    
+        <a v-if="value && value.download" :href="value.download" class="btn btn-link">Download</a>
+        <div v-if="value && value.download" class="d-inline-block mx-3">{{extension}}</div>           
+        <div v-if="value && value.size" class="d-inline-block">{{size}}</div>    
     </div>
     
 </template>
 
 <script>
     export default {
-        props: ['name', 'value'],
+        props: {
+            name: {type: String}, 
+            value: {type: Object} 
+        },
         computed: {
             size() {
                 const v = this.value.size;
@@ -42,6 +45,10 @@
                 }
             },
             extension() {
+                if(!this.value) {
+                    return '';
+                }
+                
                 const m =/\.(\w+)$/.exec(this.value.download);
                 if(m) {
                     return m[1];

@@ -14,5 +14,5 @@ class SimpleForm extends Controller
         return view('simple-form-result', [
             'request' => $request->all()
         ]);        
-    }    
+    }              
 }

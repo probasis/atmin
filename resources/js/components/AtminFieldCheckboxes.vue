@@ -24,7 +24,7 @@
             }
         },
         mounted() {
-            this.checks = this.value.slice();       
+            this.checks = Array.isArray(this.value) ? this.value.slice() : [];       
         }
     } 
 </script>

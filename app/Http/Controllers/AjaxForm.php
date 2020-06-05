@@ -10,6 +10,14 @@ class AjaxForm extends Controller
         return view('ajax-form');
     }
     
+    public function values() {
+        return [
+            "text_field" => "One line text",
+            "short_text_field" => "ABC",
+            "textarea_field" => "Multiline\ntext",
+        ];     
+    }      
+    
     public function post(Request $request) {
         $validatedData = $request->validate([
             'text_field'     => 'required|email|min:20',

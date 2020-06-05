@@ -21,7 +21,9 @@ Route::get ('/simple-form', 'SimpleForm@index');
 Route::post('/simple-form', 'SimpleForm@post');
 
 Route::get ('/ajax-form', 'AjaxForm@index');
+Route::get ('/ajax-form/values', 'AjaxForm@values');
 Route::post('/ajax-form', 'AjaxForm@post');
 
 Route::resource('/table', 'Table');
+Route::resource('/crud-table', 'CrudTable');
 Route::resource('/resources/demo', 'DemoResource');
