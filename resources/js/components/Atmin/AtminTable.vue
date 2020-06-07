@@ -33,12 +33,12 @@
             <table class="table table-bordered table-sm table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th v-if="selectButtons"></th>
-                        <th v-for="column in columns">{{column.label}}</th>
-                        <th v-if="deleteButtons"></th>                                                
+                        <th v-if="selectButtons" style="width: 20px"></th>
+                        <th v-for="column in columns" :style="{width: column.width}">{{column.label}}</th>
+                        <th v-if="deleteButtons" style="width: 20px"></th>                                                
                     </tr>
                 </thead>
-                <tbody>
+                <tbody v-if="rows.length > 0">
                     <tr v-for="(row, r) in rows" :class="{'table-active': (row===selectedRow)}">
                         <th v-if="selectButtons">
                             <a href="#" class="btn btn-primary btn-sm" @click="onSelectRow(row)">➤</a>
@@ -50,6 +50,13 @@
                             <a href="#" class="btn btn-primary btn-sm" @click="onDeleteRow(row)">&times;</a>
                         </th>                        
                     </tr>            
+                </tbody>
+                <tbody v-else>
+                    <th v-if="selectButtons"></th>
+                    <td :colspan="columns.length" class="text-center">
+                    - nothing found -
+                    </td>
+                    <th v-if="deleteButtons"></th>
                 </tbody>
             </table>
         </div>
@@ -84,9 +91,17 @@
                     params: {page: this.page, search: this.searchQuery},
                     url:    this.resourceUrl                    
                 })
-                .then(response => {                              
-                    this.rows     = response.data.data;
-                    this.lastPage = response.data.last_page;
+                .then(response => {       
+                    // Rows in the 'data' node. And pagination.
+                    if(response.data.data) {
+                        this.rows     = response.data.data;
+                        this.lastPage = response.data.last_page;                        
+                    }
+                    // Rows in root
+                    else{
+                        this.rows     = response.data;
+                        this.lastPage = 1;                        
+                    }
                 })                
             },
             onSelectRow(row) {

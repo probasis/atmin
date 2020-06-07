@@ -11,7 +11,7 @@
             <div :class="(field.label === null) ? `col-${breakpoint}-12` : `col-${breakpoint}-${fieldCols}`">
                 
                 <component 
-                    v-bind:is="'atmin-field-' + field.component" 
+                    v-bind:is="componentName(field)" 
                     :name="field.name" 
                     v-model="values[field.name]" 
                     :values="values"
@@ -50,6 +50,14 @@
                 }
                 else {
                     return [];
+                }
+            },
+            componentName(field) {
+                if(field.component) {
+                    return 'atmin-field-' + field.component;
+                }
+                else {
+                    return 'atmin-field-text';
                 }
             }
         },

@@ -185,10 +185,10 @@ let values = {
 };
 
 const columns = [
-    {name:'id',     label:'Id'},
-    {name:'title',  label:'Title'},
-    {name:'text',   label:'Text'},
-    {name:'choice', label:'Choice'}                    
+    {name:'id',     label:'Id',     width:'20px'},
+    {name:'title',  label:'Title',  width:'20%'},
+    {name:'text',   label:'Text'   },
+    {name:'choice', label:'Choice', width:'5%'}                    
 ];
 
 const crudFields = [

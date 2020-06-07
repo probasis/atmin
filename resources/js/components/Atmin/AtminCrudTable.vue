@@ -56,11 +56,13 @@
             :create-button="true"
             :select-buttons="true"
             :delete-buttons="true"
-            resource-url = "/resources/demo"
+            :resource-url = "resourceUrl"
             :columns = "columns"
             @create="launchCreateForm()"
             @select="launchEditForm($event)"
             @delete="deleteDialog($event)"
+            :createButton="canCreate"
+            :deleteButtons="canDelete"            
         ></atmin-table>
         
     </div>
@@ -71,9 +73,18 @@
     export default {
         props: {
             resourceUrl: {type: String},
-            columns: {type: Array},
-            fields: {type: Array},
+            columns: {type: Array, default: ()=>[
+                {name: 'id', label: 'Id', width: '75px'},
+                {name: 'title', label: 'Title'},
+            ]},
+            fields: {type: Array, default: ()=>[
+                {name: 'id', label: 'Id', component:'value'},
+                {name: 'title', label: 'Title', component:'text'},
+            ]},
             primaryKey: {type: String, default: 'id'},
+            canCreate: {type: Boolean, default: true},
+            canDelete: {type: Boolean, default: true},
+            canSearch: {type: Boolean, default: true},
         },   
         data() {
             return {
@@ -92,13 +103,13 @@
                 axios({
                     method: 'get',   
                     params: {page: this.page, search: this.searchQuery},
-                    url:    this.resourceUrl+'/'+row[this.primaryKey]
+                    url:    this.resourceUrl+'/'+this.escapeKey(row[this.primaryKey])
                 })
                 .then(response => {                                             
                     this.values = response.data;
                     
                     this.formTitle = 'Edit';                    
-                    this.formAction = this.resourceUrl+'/'+this.values[this.primaryKey];
+                    this.formAction = this.resourceUrl+'/'+this.escapeKey(this.values[this.primaryKey]);
                     this.formMethod = 'patch';                    
                                         
                     $(this.$refs.formDialog).modal('show');                                         
@@ -135,7 +146,7 @@
                 
                 axios({
                     method: 'delete',                       
-                    url:    this.resourceUrl+'/'+this.values[this.primaryKey]
+                    url:    this.resourceUrl+'/'+this.escapeKey(this.values[this.primaryKey])
                 })                
                 .then(
                     (response) => {    
@@ -152,6 +163,15 @@
                 this.$refs.atminForm.error = null; 
                 this.$refs.atminTable.loadTable();
                 $(this.$refs.formDialog).modal('hide'); 
+            },
+            escapeKey(k) {
+                if(typeof k === 'string') {
+                    return encodeURIComponent(k)
+                }
+                else {
+                    return k
+                }
+                
             }
         }
     }

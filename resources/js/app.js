@@ -46,10 +46,8 @@ new Vue({
 new Vue({
     el: '#crud-table-app',
     data: {
+        resourceUrl: "/resources/demo",
         columns: config.columns,
-        fields: config.crudFields,
-        onRowSelect(row){
-            alert('Row select '+row.id);
-        }
+        fields: config.crudFields
     }
 });
