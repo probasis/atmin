@@ -44,6 +44,8 @@
         },
         methods: {
             loadValuesFromUrl(url) {
+                this.clearErrors();
+                
                 let promise = axios({
                     method: 'get',                    
                     url:    url
@@ -54,18 +56,18 @@
                 return promise;
             },
             submitValuesToUrl(url, method) {
+                this.clearErrors();
+                
                 let promise = axios({                    
                     url:    url,
                     method: method,                    
-                    data:   this.values
+                    //data:   this.values,
+                    data: (this.nonReactiveValues !== null) ? this.nonReactiveValues : this.values
                 })
                 .then(response => {        
                     this.$emit('success-submit');
                 })                
-                .catch((error) => {                 
-                    this.errors = {};
-                    this.error = null;                    
-                    
+                .catch((error) => {                    
                     const data = error.response.data;            
                     this.errors = data.errors;
                     this.error  = data.message;
@@ -80,6 +82,10 @@
                 else {
                     
                 }
+            },
+            clearErrors() {
+                this.errors = {};
+                this.error  = null;
             }
         },
         computed: {

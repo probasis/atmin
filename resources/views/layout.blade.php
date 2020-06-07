@@ -26,13 +26,17 @@
                     <a class="nav-link" href="/ajax-form">Ajax form</a>
                 </li>
                 <li class="nav-item active">
+                    <a class="nav-link" href="/settings-form">Settings form</a>
+                </li>
+                
+                <li class="nav-item active">
                     <a class="nav-link" href="/table">Table</a>
                 </li>          
                 <li class="nav-item active">
                     <a class="nav-link" href="/crud-table">CRUD table</a>
                 </li> 
                 <li class="nav-item active">
-                    <a class="nav-link" href="/crud-tree">CRUD tree</a>
+                    <a class="nav-link" href="/tree">Tree</a>
                 </li>                 
             </ul>
         </div>

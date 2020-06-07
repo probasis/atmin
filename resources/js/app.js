@@ -51,3 +51,9 @@ new Vue({
         fields: config.crudFields
     }
 });
+
+new Vue({
+    el: '#crud-tree-app',
+    data: {
+    }
+});

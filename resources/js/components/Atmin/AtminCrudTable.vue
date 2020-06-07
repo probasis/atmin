@@ -100,6 +100,8 @@
             launchEditForm(row) {
                 this.values = {};
                 this.selectedRowNum = null;
+                this.$refs.atminForm.clearErrors();
+                
                 axios({
                     method: 'get',   
                     params: {page: this.page, search: this.searchQuery},
@@ -118,6 +120,8 @@
             launchCreateForm() {                
                 this.values = {};
                 this.selectedRowNum = null;
+                this.$refs.atminForm.clearErrors();
+                
                 axios({
                     method: 'get',   
                     params: {page: this.page, search: this.searchQuery},
@@ -159,8 +163,7 @@
                 )                  
             },
             refresh() {
-                this.$refs.atminForm.errors = {};
-                this.$refs.atminForm.error = null; 
+                this.$refs.atminForm.clearErrors();
                 this.$refs.atminTable.loadTable();
                 $(this.$refs.formDialog).modal('hide'); 
             },
@@ -169,9 +172,8 @@
                     return encodeURIComponent(k)
                 }
                 else {
-                    return k
-                }
-                
+                    return ''+k
+                }                
             }
         }
     }

@@ -24,6 +24,15 @@ Route::get ('/ajax-form', 'AjaxForm@index');
 Route::get ('/ajax-form/values', 'AjaxForm@values');
 Route::post('/ajax-form', 'AjaxForm@post');
 
-Route::resource('/table', 'Table');
-Route::resource('/crud-table', 'CrudTable');
+Route::get  ('/settings-form',      'SettingsForm@index');
+Route::get  ('/resources/settings', 'SettingsResource@index');
+Route::patch('/resources/settings', 'SettingsResource@update');
+
+Route::get('/table', 'Table@index');
+Route::get('/crud-table', 'CrudTable@index');
+Route::get('/tree', 'Tree@index');
+
 Route::resource('/resources/demo', 'DemoResource');
+
+
+
