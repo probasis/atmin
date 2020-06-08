@@ -15,7 +15,7 @@ class SettingsResource extends Controller
             });
     }
 
-    public function update(Request $request) {        
+    public function update(Request $request) {  
         foreach($request->all() as $name => $value) {
             DB::table('settings')->updateOrInsert(
                 ['name'  => $name],

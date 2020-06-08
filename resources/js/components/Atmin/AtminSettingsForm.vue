@@ -9,7 +9,7 @@
             @success-submit="onSuccessSubmit"
         ></atmin-form>
         
-    
+<div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="position: static: min-height: 200px;"> 
         
         <div class="toast" role="alert" aria-live="assertive" aria-atomic="true"  ref="toast" data-delay="3000">
             <div class="toast-header">
@@ -22,6 +22,9 @@
                 Data has been saved
             </div>
         </div>        
+      
+    
+</div>          
         
     </div>
 </template>

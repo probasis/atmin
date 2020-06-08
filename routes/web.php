@@ -32,7 +32,7 @@ Route::get('/table', 'Table@index');
 Route::get('/crud-table', 'CrudTable@index');
 Route::get('/tree', 'Tree@index');
 
-Route::resource('/resources/demo', 'DemoResource');
+Route::resource('/resources/demo', 'DemoResource')->only(['index','show','create','store','update','destroy']);
 
 
 
