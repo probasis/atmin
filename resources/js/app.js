@@ -57,3 +57,10 @@ new Vue({
     data: {
     }
 });
+
+new Vue({
+    el: '#settings-form-app',
+    data: {
+    }
+});
+

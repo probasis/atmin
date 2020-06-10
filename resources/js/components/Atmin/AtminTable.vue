@@ -73,7 +73,7 @@
             createButton:   {type: Boolean, default: false},
         },   
         data(){
-            return {    a:!false,
+            return {
                 page: 1,
                 lastPage: 1,
                 searchQuery: '',

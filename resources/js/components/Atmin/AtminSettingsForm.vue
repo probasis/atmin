@@ -9,22 +9,24 @@
             @success-submit="onSuccessSubmit"
         ></atmin-form>
         
-<div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="position: static: min-height: 200px;"> 
-        
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true"  ref="toast" data-delay="3000">
-            <div class="toast-header">
-                <strong class="mr-auto">Saved</strong>                
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+        <div class="modal" tabindex="-1" role="dialog" ref="successAlert">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Done</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
                 </button>
+              </div>
+              <div class="modal-body">
+                <p>Changes saved</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>                
+              </div>
             </div>
-            <div class="toast-body">
-                Data has been saved
-            </div>
-        </div>        
-      
-    
-</div>          
+          </div>
+        </div>         
         
     </div>
 </template>
@@ -41,7 +43,7 @@
         },
         methods: {
             onSuccessSubmit() {
-                $(this.$refs.toast).toast('show');
+                $(this.$refs.successAlert).modal('show');
             }
         },
         computed: {

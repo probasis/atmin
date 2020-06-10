@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<div id="ajax-form-app">
+<div id="settings-form-app">
     <h1 class="text-center">Settings form</h1>
 
     <atmin-settings-form                 

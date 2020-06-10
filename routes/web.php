@@ -33,6 +33,8 @@ Route::get('/crud-table', 'CrudTable@index');
 Route::get('/tree', 'Tree@index');
 
 Route::resource('/resources/demo', 'DemoResource')->only(['index','show','create','store','update','destroy']);
+Route::resource('/resources/posts', 'PostsResource')->only(['index','show','create','store','update','destroy']);
+Route::resource('/resources/comments', 'CommentsResource')->only(['index','show','create','store','update','destroy']);
 
 
 
