@@ -4,7 +4,7 @@
         <table v-if="rows.length > 0" class="table table-bordered table-sm table-hover mb-0">                
             <tbody>
                 <template v-for="row in rows" :class="{'table-active': (row===selectedRow)}">
-                    <tr @click.prevent="onSelect(row)">                        
+                    <tr @click.prevent="onSelect(row)" :class="{'bg-warning': isRowSelected(row)}">                        
                         <td v-if="isExpandable">                                 
                             <a href="#" class="btn btn-secondary btn-sm" @click.prevent="collapse(row)" v-if="isRowExpanded(row)">-</a>
                             <a href="#" class="btn btn-secondary btn-sm" @click.prevent="expand(row)" v-else>+</a>                            
@@ -18,6 +18,9 @@
                             <div v-for="c in entity.children">
                                 <atmin-branch
                                     v-on="$listeners"                                    
+                                                                        
+                                    :selected-entity-name = "selectedEntityName"
+                                    :selected-row-id      = "selectedRowId"
                                     
                                     :entities = "entities"
                                     :entityName = "c.name"
@@ -46,12 +49,15 @@
             entityName:     {type: String},
             
             fk: {default:null},
-            fkValue: {}
+            fkValue: {},            
+            
+            selectedEntityName: {type:String, default:null},
+            selectedRowId: {default:null}
         },   
         data(){
             return {
                 rows: [],                
-                selectedRow: null,     
+                
                 expandedRows: []
             };
         },
@@ -95,8 +101,11 @@
                 let index = this.expandedRows.findIndex((r) => r === row);
                 return (index !== -1)
             },
+            isRowSelected(row) {
+                return (row.id == this.selectedRowId) && (this.entityName == this.selectedEntityName);
+            },
             onSelect(row) {
-                this.$emit('select-node', row.id, this.entityName);
+                this.$emit('select-node', row, this.entity);
             }
         },
         computed: {

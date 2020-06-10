@@ -1,5 +1,8 @@
 <template>    
     <div>
+        
+        SELECTED:{{selectedEntityName}}/{{selectedRowId}}
+        
         <div class="bar mb-3">
 
             <button class="btn btn-primary">
@@ -30,6 +33,9 @@
                     <div v-for="c in children" class="mb-3">
                         <atmin-branch  
                             @select-node="onSelect"
+                            
+                            :selected-entity-name = "selectedEntityName"
+                            :selected-row-id      = "selectedRowId"                            
                             
                             :entities    = "entities"
                             :entity-name = "c.name"
@@ -79,20 +85,23 @@
         },   
         data(){
             return {
+                selectedEntityName: null,
+                selectedRowId: 0
             };
         },
         methods: {
-            onSelect(id, name) {
-                console.log(id, name);
+            onSelect(selectedRow, selectedEntity) {
+                for(let name in this.entities) {                    
+                    if(this.entities[name] === selectedEntity) {
+                        this.selectedEntityName = name;
+                    }                    
+                }   
+                this.selectedRowId = selectedRow.id;
             }
         },
-        computed: {
-            branches: function(){                               
-                //return this.entities[];
-            }
+        computed: { 
         },
-        mounted() {
-            
+        mounted() {            
         }
     }
 </script>
