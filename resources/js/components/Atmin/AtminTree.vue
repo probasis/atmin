@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-5">
                 <div class="tree">
-                    <div v-for="c in children" class="mb-3">
+                    <div v-for="c in children">
                         <atmin-branch  
                             @select-node="onSelect"
                             
@@ -40,7 +40,7 @@
                             :entities    = "entities"
                             :entity-name = "c.name"
                             
-                            :fk-field = "c.fk"
+                            :fk = "c.fk"
                             :fk-value = "null"
                         >
                         </atmin-branch>
@@ -49,7 +49,14 @@
             </div>
             <div class="col-7">
                 <div class="form">
-                    <div v-for="c in 100">Form {{c}}</div>
+    <atmin-form 
+        ref="ajaxForm"
+        :fields="fields"         
+        :values="values"    
+        method="post" 
+        action="/ajax-form"
+        v-bind:ajax="true"
+    ></atmin-form>
                 </div>
             </div>            
         </div>        

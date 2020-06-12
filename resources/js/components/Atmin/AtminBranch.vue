@@ -5,12 +5,16 @@
             <tbody>
                 <template v-for="row in rows" :class="{'table-active': (row===selectedRow)}">
                     <tr @click.prevent="onSelect(row)" :class="{'bg-warning': isRowSelected(row)}">                        
-                        <td v-if="isExpandable">                                 
-                            <a href="#" class="btn btn-secondary btn-sm" @click.prevent="collapse(row)" v-if="isRowExpanded(row)">-</a>
-                            <a href="#" class="btn btn-secondary btn-sm" @click.prevent="expand(row)" v-else>+</a>                            
+                        <td v-if="isExpandable" style="width:20px">                                 
+                            <a href="#" class="btn btn-primary btn-sm" @click.prevent="collapse(row)" v-if="isRowExpanded(row)">-</a>
+                            <a href="#" class="btn btn-primary btn-sm" @click.prevent="expand(row)" v-else>+</a>                            
                         </td>
-                        <td v-for="column in entity.columns">
-                            <atmin-cell-text :value="row[column.name]"></atmin-cell-text>                            
+                        <td v-for="column in entity.columns" :style="{width: column.width}">
+                            <component 
+                                :is="column.component ? 'atmin-cell-'+column.component : 'atmin-cell-text'" 
+                                :value="row[column.name]" 
+                                v-bind="typeof column.params == 'object' ? column.params : {}"
+                            ></component>                                                        
                         </td>                                                
                     </tr>            
                     <tr v-if="isRowExpanded(row)">                        
@@ -67,7 +71,7 @@
                 
                 const params = {};
                 if(this.fk) {
-                    params[this.fk] = this.fkValue;
+                    params[this.fk] = this.fkValue ? this.fkValue : '';
                 }
 
                 axios({
@@ -113,7 +117,7 @@
                 return this.entities[this.entityName];
             },
             isExpandable() {
-                return this.entity.children.length > 0
+                return this.entity.children && this.entity.children.length > 0
             },            
         },
         mounted() {

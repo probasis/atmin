@@ -33,8 +33,17 @@ Route::get('/crud-table', 'CrudTable@index');
 Route::get('/tree', 'Tree@index');
 
 Route::resource('/resources/demo', 'DemoResource')->only(['index','show','create','store','update','destroy']);
-Route::resource('/resources/posts', 'PostsResource')->only(['index','show','create','store','update','destroy']);
-Route::resource('/resources/comments', 'CommentsResource')->only(['index','show','create','store','update','destroy']);
+//Route::resource('/resources/posts', 'PostsResource')->only(['index','show','create','store','update','destroy']);
+//Route::resource('/resources/comments', 'CommentsResource')->only(['index','show','create','store','update','destroy']);
+
+$crud = ['index','show','create','store','update','destroy'];
+Route::resource('/resources/catalogs', 'Resources\Catalogs')->only($crud);
+Route::resource('/resources/categories', 'Resources\Categories')->only($crud);
+Route::resource('/resources/products', 'Resources\Products')->only($crud);
+Route::resource('/resources/reviews', 'Resources\Reviews')->only($crud);
+Route::resource('/resources/photos', 'Resources\Photos')->only($crud);
+Route::resource('/resources/pages', 'Resources\Pages')->only($crud);
+
 
 
 
