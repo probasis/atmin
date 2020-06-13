@@ -52,7 +52,7 @@ class ShopSeeder extends Seeder
                 'price' => rand(100, 1000)*10,
                 'quantity' => rand(10, 100),
                 'description' => $faker->paragraph,
-                'photo' => $faker->slug.'.jpg'                
+                'photo' => $c.'.jpg'                
             ]);         
         }       
         
@@ -70,7 +70,7 @@ class ShopSeeder extends Seeder
                 'product_id' => rand(1,100),
                 'sort' => $c*10,
                 'title' => $faker->sentence(3),
-                'photo' => $faker->slug.'.jpg'                
+                'photo' => ($c+100).'.jpg'                
             ]);                     
         } 
         

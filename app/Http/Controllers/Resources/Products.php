@@ -9,5 +9,6 @@ class Products extends \App\Http\Controllers\Controller
    public function __construct() {       
        $this->model = \App\Models\Product::class;         
        $this->filteredFields = ['category_id'];
+       $this->orderField = 'title';
    }   
 }

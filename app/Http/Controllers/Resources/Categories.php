@@ -9,5 +9,6 @@ class Categories extends \App\Http\Controllers\Controller
    public function __construct() {       
        $this->model = \App\Models\Category::class;         
        $this->filteredFields = ['catalog_id', 'category_id'];
+       $this->orderField = 'sort';
    }   
 }

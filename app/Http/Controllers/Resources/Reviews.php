@@ -9,5 +9,7 @@ class Reviews extends \App\Http\Controllers\Controller
    public function __construct() {       
        $this->model = \App\Models\Review::class;         
        $this->filteredFields = ['product_id'];
+       $this->orderField = 'date';
+       $this->orderDirection = 'asc';
    }   
 }

@@ -7,6 +7,7 @@ class Catalogs extends \App\Http\Controllers\Controller
    use \App\Atmin\CrudTrait;
    
    public function __construct() {       
-       $this->model = \App\Models\Catalog::class;              
+       $this->model = \App\Models\Catalog::class;  
+       $this->orderField = 'title';
    }   
 }

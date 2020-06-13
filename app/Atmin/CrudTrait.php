@@ -12,9 +12,9 @@ trait CrudTrait {
     ];
     protected $searchableFields = ['title', 'text'];
     protected $filteredFields = [];
-    protected $perPage = 1000000;
+    protected $perPage = 1000000000;
     protected $orderField = 'id';
-    protected $orderDirection = 'desc';    
+    protected $orderDirection = 'asc';    
     
     public function index(Request $request) {        
         $res = $this->model::orderBy($this->orderField, $this->orderDirection);
@@ -30,7 +30,7 @@ trait CrudTrait {
             }
         }            
         
-        return $res->paginate($this->perPage);        
+        return $res->paginate($this->perPage);
     }
 
     public function create() {

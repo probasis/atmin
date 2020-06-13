@@ -1,15 +1,21 @@
 <template>    
-    <div>       
+    <div class="branch">       
 
-        <table v-if="rows.length > 0" class="table table-bordered table-sm table-hover mb-0">                
+        <table v-if="rows.length > 0" class="table table-borderless table-sm mb-0" :class="{bordered: entity.tableBorder}">                
+            <thead v-if="hasHead">
+                <tr>
+                    <th v-if="isExpandable"></th>
+                    <th v-for="column in entity.columns">{{column.label}}</th>
+                </tr>                  
+            </thead>
             <tbody>
-                <template v-for="row in rows" :class="{'table-active': (row===selectedRow)}">
-                    <tr @click.prevent="onSelect(row)" :class="{'bg-warning': isRowSelected(row)}">                        
-                        <td v-if="isExpandable" style="width:20px">                                 
+                <template v-for="row in rows" :class="{'table-active': (row===selectedRow)}">  
+                    <tr @click.prevent="onSelect(row)" :class="{'branch-row':true, 'bg-warning': isRowSelected(row)}">                        
+                        <td v-if="isExpandable" style="width:20px" >                                 
                             <a href="#" class="btn btn-primary btn-sm" @click.prevent="collapse(row)" v-if="isRowExpanded(row)">-</a>
                             <a href="#" class="btn btn-primary btn-sm" @click.prevent="expand(row)" v-else>+</a>                            
                         </td>
-                        <td v-for="column in entity.columns" :style="{width: column.width}">
+                        <td v-for="column in entity.columns" :style="{width: column.width}" class="cell">
                             <component 
                                 :is="column.component ? 'atmin-cell-'+column.component : 'atmin-cell-text'" 
                                 :value="row[column.name]" 
@@ -37,13 +43,24 @@
                     </tr>            
                 </template>
             </tbody>
-        </table>        
+        </table>    
+        
+        <!--
+        <div v-else class="border py-1 px-3 text-muted text-center">
+            Empty
+        </div>
+        -->
         
     </div>
 </template>
 
 <style>
-   
+    .branch table.bordered > tbody > tr.branch-row > td.cell {        
+        border: 1px solid rgb(222, 226, 230);
+    }
+    .branch table > thead > tr > th {
+        //text-align: center;
+    }
 </style>
 
 <script>
@@ -118,7 +135,10 @@
             },
             isExpandable() {
                 return this.entity.children && this.entity.children.length > 0
-            },            
+            }, 
+            hasHead() {
+                return this.entity.columns.some((c) => !!c.label);
+            }
         },
         mounted() {
             this.loadTable()

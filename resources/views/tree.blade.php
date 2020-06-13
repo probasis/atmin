@@ -15,7 +15,8 @@
                 resourceUrl: '/resources/catalogs',
                 columns: [
                     {component: 'icon', width:'24px', params: {src: '/images/icons/catalog.svg'}},                    
-                    {name:'title',  label:'Title'}
+                    {name:'id', width:'24px'},
+                    {name:'title'}                    
                 ],
                 fields: [
                     {name:'title',  label:'Title'}
@@ -29,7 +30,7 @@
                 resourceUrl: '/resources/categories',
                 columns: [                    
                     {component: 'icon', width:'24px', params: {src: '/images/icons/category.svg'}},                    
-                    {name:'title',  label:'title'}                    
+                    {name:'title'}                    
                 ],
                 children: [
                     {name:'category', fk:'category_id'},
@@ -41,10 +42,11 @@
                 resourceUrl: '/resources/products',
                 columns: [                    
                     {component: 'icon', width:'24px', params: {src: '/images/icons/product.svg'}},                    
-                    {name:'title', label:'title'},                    
-                    {name:'price', label:'price',   width:'20px'}
-                    
+                    {name:'title', label:'Title'},                    
+                    {name:'photo', label:'Photo', width:'100px', component:'image', params:{path:'/storage/photos'}},                    
+                    {name:'price', label:'Price', width:'100px'}                    
                 ],
+                tableBorder: true,
                 children: [
                     {name:'photo', fk:'product_id'},
                     {name:'review', fk:'product_id'}
@@ -53,17 +55,22 @@
             
             photo: {
                 resourceUrl: '/resources/photos',
+                tableBorder: true,
                 columns: [                    
                     {component: 'icon', width:'24px', params: {src: '/images/icons/photo.svg'}},                    
-                    {name:'title',  label:'title'}                 
+                    {name:'photo', label:'Photo', width:'100px', component:'image', params:{path:'/storage/photos'}},                    
+                    {name:'title', label:'Title'}                                     
                 ],   
             },
             
             review: {
                 resourceUrl: '/resources/reviews',
+                tableBorder: true,
                 columns: [                    
                     {component: 'icon', width:'24px', params: {src: '/images/icons/review.svg'}},                    
-                    {name:'author',  label:'author'}                 
+                    {name:'time',  label:'Date time', width:'200px'},
+                    {name:'author',  label:'Author'},
+                    {name:'text', label:'Text'}
                 ],                
             },
             
@@ -71,7 +78,7 @@
                 resourceUrl: '/resources/pages',
                 columns: [                    
                     {component: 'icon', width:'24px', params: {src: '/images/icons/page.svg'}},                    
-                    {name:'title',  label:'title'}                 
+                    {name:'title'}                 
                 ],
                 children: [
                     {name:'page', fk:'page_id'}
