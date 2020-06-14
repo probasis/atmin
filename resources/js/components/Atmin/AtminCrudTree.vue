@@ -1,8 +1,7 @@
 <template>    
     <div>
         
-        <div class="bar mb-3">
-
+        <div class="bar py-3 px-1">
             <button class="btn btn-primary" v-if="createButtons.length === 1"
                 @click.prevent="onCreateClick(createButtons[0].entityName, createButtons[0].fk)">
                 Create
@@ -37,8 +36,7 @@
             <!--
             <button class="btn btn-primary">Up</button>
             <button class="btn btn-primary">Down</button>
-            -->
-            
+            -->            
         </div>        
         
         <div class="row">
@@ -65,7 +63,33 @@
                                        
                 </div>
             </div>            
-        </div>        
+        </div>   
+        
+        <div class="modal fade" tabindex="-1" role="dialog" ref="deleteDialog">
+            <div class="modal-dialog modal-sm modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Delete?</h3>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you want to delete the selected record?</p>
+                        <p class="text-danger">{{deleteError}}</p>
+                    </div>        
+                    <div class="modal-footer">            
+                        <button @click="deleteAction" type="button" class="btn btn-primary">
+                            Delete
+                        </button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">
+                            Cancel
+                        </button>                        
+                    </div>                      
+                </div>
+            </div>
+        </div>           
+        
     </div>
 </template>
 
@@ -100,14 +124,17 @@
             return {
                 selectedEntityName: null,
                 selectedRowId: null,
+                selectedBranchComponent: null,
                 
                 fields: [],
                 
-                createButtons: []
+                createButtons: [],
+                
+                deleteError: null
             };
         },
         methods: {
-            onSelect(row, entity) {                
+            onSelect(row, entity, branch) {                
                 this.fields = entity.fields;
                 
                 for(let name in this.entities) {                    
@@ -115,7 +142,8 @@
                         this.selectedEntityName = name;
                     }                    
                 }   
-                this.selectedRowId = row.id;                
+                this.selectedRowId = row.id; 
+                this.selectedBranchComponent = branch;
                 
                 this.$refs.ajaxForm.loadValuesFromUrl(entity.resourceUrl+'/'+row.id);
                 
@@ -141,9 +169,41 @@
                 console.log(this.selectedEntityName, this.selectedRowId);
             },
             onDeleteClick() {
-                console.log(this.selectedEntityName, this.selectedRowId);
-            }
+                this.deleteError = null; 
+                $(this.$refs.deleteDialog).modal('show');
+            },
+            
+            deleteAction() {
+                this.deleteError = null;    
                 
+                const entity = this.getSelectedEntity();
+                    
+                axios({
+                    method: 'delete',                       
+                    url:    entity.resourceUrl+'/'+this.escapeKey(this.selectedRowId)
+                })                
+                .then(
+                    (response) => { 
+                        this.selectedBranchComponent.loadRows()
+                        
+                        $(this.$refs.deleteDialog).modal('hide');
+                    },
+                    (response) => {                        
+                        this.deleteError = response.response.data.message;
+                    }                    
+                )
+            },
+            escapeKey(k) {
+                if(typeof k === 'string') {
+                    return encodeURIComponent(k)
+                }
+                else {
+                    return ''+k
+                }                
+            },
+            getSelectedEntity() {
+                return this.entities[ this.selectedEntityName ];                
+            }
         },
         computed: { 
         },

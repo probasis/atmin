@@ -86,7 +86,7 @@
             };
         },
         methods: {
-            loadTable() {
+            loadRows() {
                 this.selectedRow = null;
                 
                 const params = {};
@@ -129,7 +129,7 @@
                 return (row.id == this.selectedRowId) && (this.entityName == this.selectedEntityName);
             },
             onSelect(row) {
-                this.$emit('select-node', row, this.entity);
+                this.$emit('select-node', row, this.entity, this);
             }
         },
         computed: {
@@ -144,7 +144,7 @@
             }
         },
         mounted() {
-            this.loadTable()
+            this.loadRows()
         }
     }
 </script>
