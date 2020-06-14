@@ -1,6 +1,6 @@
 <template>
     <div class="mt-1">
-        <div v-for="item in params.items" class="custom-control custom-radio custom-control-inline">
+        <div v-for="item in items" class="custom-control custom-radio custom-control-inline">
             <input 
                 type="radio" 
                 class="custom-control-input" 
@@ -17,6 +17,6 @@
 
 <script>
     export default {            
-        props: ['name', 'params', 'value'], 
+        props: ['name', 'value', 'items'], 
     } 
 </script>

@@ -1,6 +1,6 @@
 <template>
     <div class="mt-1">
-        <div v-for="item in params.items" class="custom-control custom-checkbox custom-control-inline">
+        <div v-for="item in items" class="custom-control custom-checkbox custom-control-inline">
             <input 
                 type="checkbox" 
                 class="custom-control-input" 
@@ -17,7 +17,7 @@
 
 <script>
     export default {            
-        props: ['name', 'params', 'value'],
+        props: ['name', 'items', 'value'],
         data() {
             return {
                 checks: []

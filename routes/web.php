@@ -31,10 +31,9 @@ Route::patch('/resources/settings', 'SettingsResource@update');
 Route::get('/table', 'Table@index');
 Route::get('/crud-table', 'CrudTable@index');
 Route::get('/tree', 'Tree@index');
+Route::get('/crud-tree', function(){ return view('crud-tree'); });
 
 Route::resource('/resources/demo', 'DemoResource')->only(['index','show','create','store','update','destroy']);
-//Route::resource('/resources/posts', 'PostsResource')->only(['index','show','create','store','update','destroy']);
-//Route::resource('/resources/comments', 'CommentsResource')->only(['index','show','create','store','update','destroy']);
 
 $crud = ['index','show','create','store','update','destroy'];
 Route::resource('/resources/catalogs', 'Resources\Catalogs')->only($crud);

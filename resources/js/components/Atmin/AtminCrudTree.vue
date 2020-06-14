@@ -1,62 +1,68 @@
 <template>    
     <div>
         
-        SELECTED:{{selectedEntityName}}/{{selectedRowId}}
-        
         <div class="bar mb-3">
 
-            <button class="btn btn-primary">
-                Edit
-            </button>
-            
-            <div class="btn-group">
+            <button class="btn btn-primary" v-if="createButtons.length === 1"
+                @click.prevent="onCreateClick(createButtons[0].entityName, createButtons[0].fk)">
+                Create
+            </button>    
+
+            <div class="btn-group" v-else-if="createButtons.length > 1">
                 <div class="dropdown">
-                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Create
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Blog</a>
-                    <a class="dropdown-item" href="#">Post</a>
-                  </div>
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Create
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#" v-for="button in createButtons" 
+                            @click.prevent="onCreateClick(button.entityName, button.fk)">
+                            {{button.entityTitle}}
+                        </a>                    
+                    </div>
                 </div>
             </div>
             
-            <button class="btn btn-primary">Delete</button>            
+            <button class="btn btn-primary"
+                @click="onEditClick()">
+                Edit
+            </button>
+            
+            <button class="btn btn-primary"
+                @click="onDeleteClick()">
+                Delete
+            </button>            
+            
+            {{selectedEntityName}}/{{selectedRowId}}
+            
+            <!--
             <button class="btn btn-primary">Up</button>
             <button class="btn btn-primary">Down</button>
+            -->
             
         </div>        
         
         <div class="row">
-            <div class="col-5">
-                <div class="tree">
-                    <div v-for="c in children">
-                        <atmin-branch  
-                            @select-node="onSelect"
-                            
-                            :selected-entity-name = "selectedEntityName"
-                            :selected-row-id      = "selectedRowId"                            
-                            
-                            :entities    = "entities"
-                            :entity-name = "c.name"
-                            
-                            :fk = "c.fk"
-                            :fk-value = "null"
-                        >
-                        </atmin-branch>
-                    </div>
-                </div>
+            <div class="col-6">
+                
+                <atmin-tree
+                    :entities="entities"
+                    :children="children"
+                    @select-node="onSelect"
+                ></atmin-tree>
+                
             </div>
-            <div class="col-7">
+            <div class="col-6">
                 <div class="form">
-    <atmin-form 
-        ref="ajaxForm"
-        :fields="fields"         
-        :values="values"    
-        method="post" 
-        action="/ajax-form"
-        v-bind:ajax="true"
-    ></atmin-form>
+                    
+                    <atmin-form 
+                        ref="ajaxForm"
+                        :fields="fields"         
+                        :values="{}"    
+                        method="post" 
+                        action="/ajax-form"
+                        :ajax="true"
+                    ></atmin-form>
+                                       
                 </div>
             </div>            
         </div>        
@@ -93,18 +99,51 @@
         data(){
             return {
                 selectedEntityName: null,
-                selectedRowId: 0
+                selectedRowId: null,
+                
+                fields: [],
+                
+                createButtons: []
             };
         },
         methods: {
-            onSelect(selectedRow, selectedEntity) {
+            onSelect(row, entity) {                
+                this.fields = entity.fields;
+                
                 for(let name in this.entities) {                    
-                    if(this.entities[name] === selectedEntity) {
+                    if(this.entities[name] === entity) {
                         this.selectedEntityName = name;
                     }                    
                 }   
-                this.selectedRowId = selectedRow.id;
+                this.selectedRowId = row.id;                
+                
+                this.$refs.ajaxForm.loadValuesFromUrl(entity.resourceUrl+'/'+row.id);
+                
+                this.createButtons = [];
+                if(entity.children) {
+                    for(let child of entity.children) {                    
+                        let entity = this.entities[child.entity];
+                        let title = entity.title;
+
+                        this.createButtons.push({
+                            entityName: child.entity,
+                            entityTitle: title ? title : child.entity,
+                            fk: child.fk,
+                            fkValue: row.id
+                        });
+                    }                
+                }
+            },
+            onCreateClick(entityName, fk) {
+                console.log(entityName, fk, this.selectedRowId);
+            },
+            onEditClick() {
+                console.log(this.selectedEntityName, this.selectedRowId);
+            },
+            onDeleteClick() {
+                console.log(this.selectedEntityName, this.selectedRowId);
             }
+                
         },
         computed: { 
         },

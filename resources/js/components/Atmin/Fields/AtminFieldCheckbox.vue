@@ -9,7 +9,7 @@
             :checked="isChecked" 
             v-on:change="$emit('input', $event.target.checked)"       
         >             
-        <label :for="`field-${name}`" class="custom-control-label">{{params ? params.text : ''}}</label> 
+        <label :for="`field-${name}`" class="custom-control-label">{{text ? text : ''}}</label> 
     </div> 
 
 </template>
@@ -17,9 +17,9 @@
 <script>
     export default {            
         props: [
-            'name', 
-            'params', 
-            'value'
+            'name',             
+            'value',
+            'text' 
         ],
         computed: {
             isChecked() {

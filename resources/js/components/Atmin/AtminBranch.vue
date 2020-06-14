@@ -4,17 +4,20 @@
         <table v-if="rows.length > 0" class="table table-borderless table-sm mb-0" :class="{bordered: entity.tableBorder}">                
             <thead v-if="hasHead">
                 <tr>
-                    <th v-if="isExpandable"></th>
+                    <th></th>
                     <th v-for="column in entity.columns">{{column.label}}</th>
                 </tr>                  
             </thead>
             <tbody>
                 <template v-for="row in rows" :class="{'table-active': (row===selectedRow)}">  
                     <tr @click.prevent="onSelect(row)" :class="{'branch-row':true, 'bg-warning': isRowSelected(row)}">                        
-                        <td v-if="isExpandable" style="width:20px" >                                 
+                        <td v-if="isExpandable" style="width:30px">   
                             <a href="#" class="btn btn-primary btn-sm" @click.prevent="collapse(row)" v-if="isRowExpanded(row)">-</a>
                             <a href="#" class="btn btn-primary btn-sm" @click.prevent="expand(row)" v-else>+</a>                            
                         </td>
+                        <td v-else style="width:30px">                                 
+                        </td> 
+                        
                         <td v-for="column in entity.columns" :style="{width: column.width}" class="cell">
                             <component 
                                 :is="column.component ? 'atmin-cell-'+column.component : 'atmin-cell-text'" 
@@ -33,7 +36,7 @@
                                     :selected-row-id      = "selectedRowId"
                                     
                                     :entities = "entities"
-                                    :entityName = "c.name"
+                                    :entityName = "c.entity"
                                     :fk = "c.fk"
                                     :fk-value = "row.id"
                                 >

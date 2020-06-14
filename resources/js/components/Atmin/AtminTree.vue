@@ -1,17 +1,16 @@
 <template>    
 
     <div class="tree">
-        SELECTED: {{selectedEntityName}}/{{selectedRowId}}
-
         <div v-for="c in children">
             <atmin-branch  
                 @select-node="onSelect"
+                v-on="$listeners"
 
                 :selected-entity-name = "selectedEntityName"
                 :selected-row-id      = "selectedRowId"                            
 
                 :entities    = "entities"
-                :entity-name = "c.name"
+                :entity-name = "c.entity"
 
                 :fk = "c.fk"
                 :fk-value = "null"

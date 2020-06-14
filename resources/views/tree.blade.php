@@ -6,8 +6,8 @@
         
     <atmin-tree
         :children="[
-            {name:'catalog', fk:null},
-            {name:'page', fk:'page_id'}
+            {entity:'catalog', fk:null},
+            {entity:'page', fk:'page_id'}
         ]"
         
         :entities="{        
@@ -22,7 +22,7 @@
                     {name:'title',  label:'Title'}
                 ],
                 children: [
-                    {name:'category', fk:'catalog_id'}
+                    {entity:'category', fk:'catalog_id'}
                 ]
             },      
 
@@ -33,8 +33,8 @@
                     {name:'title'}                    
                 ],
                 children: [
-                    {name:'category', fk:'category_id'},
-                    {name:'product', fk:'category_id'},
+                    {entity:'category', fk:'category_id'},
+                    {entity:'product', fk:'category_id'},
                 ]                
             },
 
@@ -48,8 +48,8 @@
                 ],
                 tableBorder: true,
                 children: [
-                    {name:'photo', fk:'product_id'},
-                    {name:'review', fk:'product_id'}
+                    {entity:'photo', fk:'product_id'},
+                    {entity:'review', fk:'product_id'}
                 ]                
             },
             
@@ -81,7 +81,7 @@
                     {name:'title'}                 
                 ],
                 children: [
-                    {name:'page', fk:'page_id'}
+                    {entity:'page', fk:'page_id'}
                 ]                
             }            
         }"

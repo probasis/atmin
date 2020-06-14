@@ -12,10 +12,11 @@
                 
                 <component 
                     v-bind:is="componentName(field)" 
+                    v-bind="typeof field.params == 'object' ? field.params : {}"
+                    
                     :name="field.name" 
                     v-model="values[field.name]" 
-                    :values="values"
-                    :params="field.params ? field.params : {}"
+                    :values="values"                                        
                 ></component>            
 
                 <template v-if="fieldErrors(field.name)">

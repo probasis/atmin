@@ -4,15 +4,15 @@
         :name="name"
         type="text" 
         class="form-control" 
-        :style="{'max-width': params.width}"
+        :style="{'max-width': maxWidth}"
         :value="value"
-        :placeholder="params.placeholder"
+        :placeholder="placeholder"
         v-on:input="$emit('input', $event.target.value)"
     >
 </template>
 
 <script>
     export default {
-        props: ['name', 'value', 'params']
+        props: ['name', 'value', 'maxWidth', 'placeholder']
     }
 </script>
